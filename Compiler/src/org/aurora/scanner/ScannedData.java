@@ -15,4 +15,9 @@ public class ScannedData extends AurIOComponent {
     public List<Token> getTokens() {
         return tokens;
     }
+
+    @Override
+    public AurIOComponent clone() {
+        return new ScannedData(tokens);
+    }
 }

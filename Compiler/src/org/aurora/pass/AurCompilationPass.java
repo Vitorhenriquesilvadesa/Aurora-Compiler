@@ -1,11 +1,12 @@
 package org.aurora.pass;
 
+import org.aurora.component.AurIOComponent;
 import org.aurora.interceptor.AurPassiveInterceptor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AurCompilationPass<I, O> {
+public abstract class AurCompilationPass<I extends AurIOComponent, O extends AurIOComponent> {
 
     private final List<AurPassiveInterceptor<I, O>> interceptors = new ArrayList<>();
 
@@ -20,13 +21,13 @@ public abstract class AurCompilationPass<I, O> {
 
     public final O runWithInterceptors(I input) {
 
-        for(AurPassiveInterceptor<I, O> interceptor : interceptors) {
+        for (AurPassiveInterceptor<I, O> interceptor : interceptors) {
             interceptor.beforeState(input);
         }
 
         O output = pass(input);
 
-        for(AurPassiveInterceptor<I, O> interceptor : interceptors) {
+        for (AurPassiveInterceptor<I, O> interceptor : interceptors) {
             interceptor.afterState(output);
         }
 
@@ -34,6 +35,9 @@ public abstract class AurCompilationPass<I, O> {
     }
 
     public abstract Class<I> getInputType();
+
+    public abstract Class<O> getOutputType();
+
     public abstract String getDebugName();
 
     protected abstract O pass(I input);

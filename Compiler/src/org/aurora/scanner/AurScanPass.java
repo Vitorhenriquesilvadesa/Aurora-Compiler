@@ -32,6 +32,11 @@ public class AurScanPass extends AurCompilationPass<AurFile, ScannedData> {
     }
 
     @Override
+    public Class<ScannedData> getOutputType() {
+        return ScannedData.class;
+    }
+
+    @Override
     public String getDebugName() {
         return "Scan Pass";
     }
@@ -48,6 +53,8 @@ public class AurScanPass extends AurCompilationPass<AurFile, ScannedData> {
             syncCursors();
             scanToken();
         }
+
+        makeToken(EOF, "EOF", null);
 
         return new ScannedData(tokens);
     }
@@ -77,6 +84,54 @@ public class AurScanPass extends AurCompilationPass<AurFile, ScannedData> {
                 makeToken(SLASH);
                 break;
 
+            case '!':
+                if (match('=')) {
+                    makeToken(MARK_EQUAL);
+                } else {
+                    makeToken(MARK);
+                }
+                break;
+
+            case '&':
+                if (match('&')) {
+                    makeToken(AND);
+                } else {
+                    makeToken(BITWISE_AND);
+                }
+                break;
+
+            case '|':
+                if (match('|')) {
+                    makeToken(OR);
+                } else {
+                    makeToken(BITWISE_OR);
+                }
+                break;
+
+            case '=':
+                if (match('=')) {
+                    makeToken(EQUAL_EQUAL);
+                } else {
+                    makeToken(EQUAL);
+                }
+                break;
+
+            case '>':
+                if (match('=')) {
+                    makeToken(GREATER_EQUAL);
+                } else {
+                    makeToken(GREATER);
+                }
+                break;
+
+            case '<':
+                if (match('=')) {
+                    makeToken(LESS_EQUAL);
+                } else {
+                    makeToken(LESS);
+                }
+                break;
+
             case ' ':
             case '\t':
             case '\r':
@@ -93,7 +148,7 @@ public class AurScanPass extends AurCompilationPass<AurFile, ScannedData> {
                     break;
                 }
 
-                if(isAlpha(c)) {
+                if (isAlpha(c)) {
                     identifier();
                     break;
                 }

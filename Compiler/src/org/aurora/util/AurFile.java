@@ -17,6 +17,10 @@ public final class AurFile extends AurIOComponent {
         source = extract(path);
     }
 
+    public AurFile(AurFile file) {
+        this.source = file.source;
+    }
+
     public String getSource() {
         return source;
     }
@@ -36,5 +40,10 @@ public final class AurFile extends AurIOComponent {
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public AurIOComponent clone() {
+        return new AurFile(this);
     }
 }

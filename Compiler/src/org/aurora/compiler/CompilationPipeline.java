@@ -10,12 +10,11 @@ public class CompilationPipeline {
 
     private final List<AurCompilationPass<? extends AurIOComponent, ? extends AurIOComponent>> passes = new ArrayList<>();
 
-    public CompilationPipeline insertStage(AurCompilationPass<? extends AurIOComponent, ? extends AurIOComponent> pass) {
+    public void insertStage(AurCompilationPass<? extends AurIOComponent, ? extends AurIOComponent> pass) {
         passes.add(pass);
-        return this;
     }
 
-    public void run(AurIOComponent input) throws Exception {
+    public void run(AurIOComponent input) {
         AurIOComponent currentInput = input;
         for (AurCompilationPass<? extends AurIOComponent, ? extends AurIOComponent> pass : passes) {
             System.out.println("Running " + pass.getDebugName() + ".");
@@ -32,18 +31,18 @@ public class CompilationPipeline {
     }
 
     @SuppressWarnings("unchecked")
-    private <I, O> AurIOComponent runPass(AurCompilationPass<I, O> pass, AurIOComponent input) throws Exception {
+    private <I extends AurIOComponent, O extends AurIOComponent> AurIOComponent runPass(AurCompilationPass<I, O> pass, AurIOComponent input) {
         if (!pass.getInputType().isInstance(input)) {
             throw new IllegalArgumentException("Input type mismatch. Expected: " + pass.getInputType() + ", but got: " + input.getClass());
         }
-        return (AurIOComponent) pass.run((I) input);
+        return pass.run((I) input);
     }
 
     @SuppressWarnings("unchecked")
-    private <I, O> AurIOComponent runPassWithInterceptors(AurCompilationPass<I, O> pass, AurIOComponent input) throws Exception {
+    private <I extends AurIOComponent, O extends AurIOComponent> AurIOComponent runPassWithInterceptors(AurCompilationPass<I, O> pass, AurIOComponent input) {
         if (!pass.getInputType().isInstance(input)) {
             throw new IllegalArgumentException("Input type mismatch. Expected: " + pass.getInputType() + ", but got: " + input.getClass());
         }
-        return (AurIOComponent) pass.runWithInterceptors((I) input);
+        return pass.runWithInterceptors((I) input);
     }
 }
