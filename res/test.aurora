@@ -1,5 +1,37 @@
-if(3 > 2) {
-    if(3 > 2) {
+int square(int x) {
+    int i = 0;
 
+    while(true) {
+        i++;
+        if(i == x * x) return i;
     }
 }
+
+int cube(int x) {
+    int i = 0;
+
+    while(true) {
+        i++;
+        if(i == x * square(x)) return i;
+    }
+}
+
+int pow4(int x) {
+    int i = 0;
+
+    while(true) {
+        i++;
+        if(i == x * cube(x)) return i;
+    }
+}
+
+int pow5(int x) {
+    int i = 0;
+
+    while(true) {
+        i++;
+        if(i == x * pow4(x)) return i;
+    }
+}
+
+pow5(10);

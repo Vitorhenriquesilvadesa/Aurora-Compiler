@@ -9,21 +9,23 @@
     </Condition>
     <Then>
       <Body>
-        <IfStatement>
-          <Condition>
-            <Logical>
-              <Literal>3</Literal>
-              <Comparator>GREATER</Comparator>
-              <Literal>2</Literal>
-            </Logical>
-          </Condition>
-          <Then>
-            <Body>
 
-            </Body>
-          </Then>
-        </IfStatement>
       </Body>
     </Then>
+    <Else>
+      <IfStatement>
+        <Condition>
+          <Logical>
+            <Literal>3</Literal>
+            <Comparator>EQUAL_EQUAL</Comparator>
+            <Literal>3</Literal>
+          </Logical>
+        </Condition>
+        <Then>
+          <Body>
+
+          </Body>
+        </Then>
+      </IfStatement>    </Else>
   </IfStatement>
 </Program>
