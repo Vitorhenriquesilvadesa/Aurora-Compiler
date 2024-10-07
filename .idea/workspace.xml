@@ -4,24 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b2ecc96-c289-4e2d-ab0f-dc6a1ce5061f" name="Changes" comment="Initializing compilation Parse Pass.">
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/expression/AurGroupExpression.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/statement/AurBodyStatement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/statement/AurExpressionStatement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/statement/AurIfStatement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/statement/AurStatementNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/processor/AurStatementNodeProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/interceptor/AurParsedASTPrinterInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/interceptor/AurParsedASTPrinterInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/AurParsePass.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/AurParsePass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/ParsedData.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/ParsedData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/processor/AurExpressionNodeProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/processor/AurExpressionNodeProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/AurScanPass.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/AurScanPass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/TokenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/TokenType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/src/org/aurora/core/Aurora.java" beforeDir="false" afterPath="$PROJECT_DIR$/Core/src/org/aurora/core/Aurora.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/test.aurora" beforeDir="false" afterPath="$PROJECT_DIR$/res/test.aurora" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/res/test.xml" afterDir="false" />
-    </list>
+    <list default="true" id="7b2ecc96-c289-4e2d-ab0f-dc6a1ce5061f" name="Changes" comment="Adding statements to Parsing Pass." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,18 +20,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Vitorhenriquesilvadesa"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Vitorhenriquesilvadesa&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Vitorhenriquesilvadesa/Aurora-Compiler",
-    "accountId": "1c473d75-37dd-4c79-83d8-7ca521848027"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Vitorhenriquesilvadesa/Aurora-Compiler&quot;,
+    &quot;accountId&quot;: &quot;1c473d75-37dd-4c79-83d8-7ca521848027&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
@@ -61,26 +44,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Aurora.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "/home/vitor/IdeaProjects/Aurora/Core/src/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Aurora.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/home/vitor/IdeaProjects/Aurora/Core/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.aurora.parser.statement" />
@@ -114,7 +97,7 @@
       <option name="presentableId" value="Default" />
       <updated>1728243423774</updated>
       <workItem from="1728243424845" duration="255000" />
-      <workItem from="1728243690524" duration="20876000" />
+      <workItem from="1728243690524" duration="21177000" />
     </task>
     <task id="LOCAL-00001" summary="First commi.">
       <option name="closed" value="true" />
@@ -148,7 +131,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728258429354</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Adding statements to Parsing Pass.">
+      <option name="closed" value="true" />
+      <created>1728267638393</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1728267638393</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,7 +149,8 @@
     <MESSAGE value="First commi." />
     <MESSAGE value="First commit." />
     <MESSAGE value="Initializing compilation Parse Pass." />
-    <option name="LAST_COMMIT_MESSAGE" value="Initializing compilation Parse Pass." />
+    <MESSAGE value="Adding statements to Parsing Pass." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding statements to Parsing Pass." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

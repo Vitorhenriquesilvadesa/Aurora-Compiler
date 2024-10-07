@@ -3,7 +3,7 @@ package org.aurora.interpreter;
 import org.aurora.parser.ParsedData;
 import org.aurora.pass.AurCompilationPass;
 
-public class AurInterpreterPass extends AurCompilationPass<ParsedData, AurInterpretResult> {
+public class AurInterpretPass extends AurCompilationPass<ParsedData, AurInterpretResult> {
 
     @Override
     public Class<ParsedData> getInputType() {
