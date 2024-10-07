@@ -24,6 +24,8 @@ public class AurScanPass extends AurCompilationPass<AurFile, ScannedData> {
         keywords = new HashMap<>();
         keywords.put("public", PUBLIC);
         keywords.put("locked", LOCKED);
+        keywords.put("if", IF);
+        keywords.put("else", ELSE);
     }
 
     @Override
@@ -130,6 +132,22 @@ public class AurScanPass extends AurCompilationPass<AurFile, ScannedData> {
                 } else {
                     makeToken(LESS);
                 }
+                break;
+
+            case '(':
+                makeToken(LEFT_PAREN);
+                break;
+
+            case ')':
+                makeToken(RIGHT_PAREN);
+                break;
+
+            case '{':
+                makeToken(LEFT_BRACE);
+                break;
+
+            case '}':
+                makeToken(RIGHT_BRACE);
                 break;
 
             case ' ':

@@ -2,14 +2,19 @@ package org.aurora.interceptor;
 
 import org.aurora.parser.ParsedData;
 import org.aurora.parser.expression.*;
+import org.aurora.parser.statement.AurBodyStatement;
+import org.aurora.parser.statement.AurExpressionStatement;
+import org.aurora.parser.statement.AurIfStatement;
+import org.aurora.parser.statement.AurStatementNode;
 import org.aurora.processor.AurExpressionNodeProcessor;
+import org.aurora.processor.AurStatementNodeProcessor;
 import org.aurora.scanner.ScannedData;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class AurParsedASTPrinterInterceptor implements AurPassiveInterceptor<ScannedData, ParsedData>, AurExpressionNodeProcessor<String> {
+public class AurParsedASTPrinterInterceptor implements AurPassiveInterceptor<ScannedData, ParsedData>, AurExpressionNodeProcessor<String>, AurStatementNodeProcessor<String> {
 
     private int depth = 0;
     private final int tabSize = 2;
@@ -29,14 +34,14 @@ public class AurParsedASTPrinterInterceptor implements AurPassiveInterceptor<Sca
             System.out.println("<Program>");
             beginScope();
 
-            for (AurExpressionNode expressionNode : input.getExpressions()) {
-                String formatedExpression = format(expressionNode);
+            for (AurStatementNode statementNode : input.getExpressions()) {
+                String formatedExpression = format(statementNode);
                 System.out.println(formatedExpression);
                 printer.println(formatedExpression);
             }
 
             printer.print("</Program>");
-            System.out.print("</Program>");
+            System.out.println("</Program>");
             endScope();
 
         } catch (IOException e) {
@@ -46,6 +51,10 @@ public class AurParsedASTPrinterInterceptor implements AurPassiveInterceptor<Sca
 
     private String format(AurExpressionNode expression) {
         return expression.acceptProcessor(this);
+    }
+
+    private String format(AurStatementNode statement) {
+        return statement.acceptProcessor(this);
     }
 
     @Override
@@ -58,7 +67,6 @@ public class AurParsedASTPrinterInterceptor implements AurPassiveInterceptor<Sca
         StringBuilder sb = new StringBuilder();
         sb.append(indent()).append("<Binary>");
         newLine(sb);
-
         beginScope();
 
         sb.append(format(expression.left));
@@ -80,7 +88,6 @@ public class AurParsedASTPrinterInterceptor implements AurPassiveInterceptor<Sca
         StringBuilder sb = new StringBuilder();
         sb.append(indent()).append("<Unary>");
         newLine(sb);
-
         beginScope();
 
         sb.append(indent()).append("</Operator ").append(expression.operator.type().toString()).append(">");
@@ -100,7 +107,6 @@ public class AurParsedASTPrinterInterceptor implements AurPassiveInterceptor<Sca
         StringBuilder sb = new StringBuilder();
         sb.append(indent()).append("<Logical>");
         newLine(sb);
-
         beginScope();
 
         sb.append(format(expression.left));
@@ -112,6 +118,22 @@ public class AurParsedASTPrinterInterceptor implements AurPassiveInterceptor<Sca
 
         endScope();
         sb.append(indent()).append("</Logical>");
+        newLine(sb);
+
+        return sb.toString();
+    }
+
+    @Override
+    public String processGroupExpression(AurGroupExpression expression) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(indent()).append("<Group>");
+        newLine(sb);
+        beginScope();
+
+        sb.append(format(expression.expression));
+
+        endScope();
+        sb.append(indent()).append("</Group>");
         newLine(sb);
 
         return sb.toString();
@@ -131,5 +153,85 @@ public class AurParsedASTPrinterInterceptor implements AurPassiveInterceptor<Sca
 
     private void newLine(StringBuilder sb) {
         sb.append(System.lineSeparator());
+    }
+
+    @Override
+    public String processIfStatement(AurIfStatement statement) {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(indent()).append("<IfStatement>");
+        newLine(sb);
+        beginScope();
+
+        sb.append(indent()).append("<Condition>");
+        beginScope();
+        newLine(sb);
+        sb.append(format(statement.condition));
+
+        endScope();
+        sb.append(indent()).append("</Condition>");
+        newLine(sb);
+
+        sb.append(indent()).append("<Then>");
+        beginScope();
+        newLine(sb);
+        sb.append(format(statement.thenStatement));
+
+        endScope();
+        sb.append(indent()).append("</Then>");
+        newLine(sb);
+
+
+        if (statement.elseStatement != null) {
+            sb.append(indent()).append("<Else>");
+            beginScope();
+            newLine(sb);
+            sb.append(format(statement.elseStatement));
+
+            endScope();
+            sb.append(indent()).append("</Else>");
+            newLine(sb);
+        }
+
+        endScope();
+        sb.append(indent()).append("</IfStatement>");
+
+        return sb.toString();
+    }
+
+    @Override
+    public String processExpressionStatement(AurExpressionStatement statement) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(indent()).append("<Expression>");
+        newLine(sb);
+        beginScope();
+
+        sb.append(format(statement.expression));
+
+        endScope();
+        sb.append(indent()).append("</Expression>");
+        newLine(sb);
+
+        return sb.toString();
+    }
+
+    @Override
+    public String processBodyStatement(AurBodyStatement statement) {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(indent()).append("<Body>");
+        newLine(sb);
+        beginScope();
+
+        for (AurStatementNode statementNode : statement.statements) {
+            sb.append(format(statementNode));
+        }
+
+        endScope();
+        newLine(sb);
+        sb.append(indent()).append("</Body>");
+        newLine(sb);
+
+        return sb.toString();
     }
 }

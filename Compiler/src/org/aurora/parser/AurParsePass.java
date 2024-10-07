@@ -2,6 +2,10 @@ package org.aurora.parser;
 
 import org.aurora.exception.AurParseException;
 import org.aurora.parser.expression.*;
+import org.aurora.parser.statement.AurBodyStatement;
+import org.aurora.parser.statement.AurExpressionStatement;
+import org.aurora.parser.statement.AurIfStatement;
+import org.aurora.parser.statement.AurStatementNode;
 import org.aurora.pass.AurCompilationPass;
 import org.aurora.scanner.ScannedData;
 import org.aurora.scanner.Token;
@@ -46,14 +50,52 @@ public class AurParsePass extends AurCompilationPass<ScannedData, ParsedData> {
     private ParsedData parseTokens(ScannedData input) {
         resetInternalState(input);
 
-        List<AurExpressionNode> expressions = new ArrayList<>();
+        List<AurStatementNode> statements = new ArrayList<>();
 
         while (!isAtEnd()) {
-            AurExpressionNode expressionNode = expression();
-            expressions.add(expressionNode);
+            AurStatementNode statementNode = statement();
+            statements.add(statementNode);
         }
 
-        return new ParsedData(expressions);
+        return new ParsedData(statements);
+    }
+
+    private AurStatementNode statement() {
+        if (match(IF)) return ifStatement();
+        if (match(LEFT_BRACE)) return bodyStatement();
+
+        return expressionStatement();
+    }
+
+    private AurStatementNode bodyStatement() {
+        List<AurStatementNode> statements = new ArrayList<>();
+
+        while (!check(RIGHT_BRACE)) {
+            statements.add(statement());
+        }
+
+        consume(RIGHT_BRACE, "Expect '}' after body.");
+
+        return new AurBodyStatement(statements);
+    }
+
+    private AurStatementNode expressionStatement() {
+        AurExpressionNode expression = expression();
+        return new AurExpressionStatement(expression);
+    }
+
+    private AurStatementNode ifStatement() {
+        consume(LEFT_PAREN, "Expect '(' after 'if'.");
+        AurExpressionNode condition = expression();
+        consume(RIGHT_PAREN, "Expect ')' after 'if' condition.");
+        AurStatementNode thenBranch = statement();
+        AurStatementNode elseBranch = null;
+
+        if (match(ELSE)) {
+            elseBranch = statement();
+        }
+
+        return new AurIfStatement(condition, thenBranch, elseBranch);
     }
 
     private AurExpressionNode expression() {
@@ -63,7 +105,7 @@ public class AurParsePass extends AurCompilationPass<ScannedData, ParsedData> {
     private AurExpressionNode or() {
         AurExpressionNode expressionNode = and();
 
-        while(match(OR)) {
+        while (match(OR)) {
             Token operator = previous();
             AurExpressionNode right = and();
             expressionNode = new AurLogicalExpression(expressionNode, operator, right);
@@ -75,7 +117,7 @@ public class AurParsePass extends AurCompilationPass<ScannedData, ParsedData> {
     private AurExpressionNode and() {
         AurExpressionNode expressionNode = equality();
 
-        while(match(AND)) {
+        while (match(AND)) {
             Token operator = previous();
             AurExpressionNode right = equality();
             expressionNode = new AurLogicalExpression(expressionNode, operator, right);
@@ -88,7 +130,7 @@ public class AurParsePass extends AurCompilationPass<ScannedData, ParsedData> {
 
         AurExpressionNode expressionNode = comparison();
 
-        while(match(EQUAL_EQUAL, MARK_EQUAL)) {
+        while (match(EQUAL_EQUAL, MARK_EQUAL)) {
             Token operator = previous();
             AurExpressionNode right = comparison();
             expressionNode = new AurLogicalExpression(expressionNode, operator, right);
@@ -101,7 +143,7 @@ public class AurParsePass extends AurCompilationPass<ScannedData, ParsedData> {
 
         AurExpressionNode expressionNode = term();
 
-        if(match(GREATER, GREATER_EQUAL, LESS, LESS_EQUAL)) {
+        if (match(GREATER, GREATER_EQUAL, LESS, LESS_EQUAL)) {
             Token operator = previous();
             AurExpressionNode right = term();
             expressionNode = new AurLogicalExpression(expressionNode, operator, right);
@@ -149,8 +191,26 @@ public class AurParsePass extends AurCompilationPass<ScannedData, ParsedData> {
             return new AurLiteralExpression(previous());
         }
 
+        if (match(LEFT_PAREN)) {
+            return group();
+        }
+
         error("Invalid expression");
         return null;
+    }
+
+    private AurExpressionNode group() {
+        Token paren = previous();
+        AurExpressionNode expressionNode = expression();
+        consume(RIGHT_PAREN, "Expect ')' after group expression.");
+
+        return new AurGroupExpression(paren, expressionNode);
+    }
+
+    private void consume(TokenType type, String message) {
+        if (!match(type)) {
+            error(message);
+        }
     }
 
     private void error(String message) {
@@ -181,6 +241,7 @@ public class AurParsePass extends AurCompilationPass<ScannedData, ParsedData> {
     }
 
     private boolean check(TokenType type) {
+        if (isAtEnd()) return false;
         return peek().type() == type;
     }
 

@@ -1,9 +1,6 @@
 package org.aurora.processor;
 
-import org.aurora.parser.expression.AurBinaryExpression;
-import org.aurora.parser.expression.AurLiteralExpression;
-import org.aurora.parser.expression.AurLogicalExpression;
-import org.aurora.parser.expression.AurUnaryExpression;
+import org.aurora.parser.expression.*;
 
 public interface AurExpressionNodeProcessor<T> {
 
@@ -14,4 +11,6 @@ public interface AurExpressionNodeProcessor<T> {
     T processUnaryExpression(AurUnaryExpression expression);
 
     T processLogicalExpression(AurLogicalExpression expression);
+
+    T processGroupExpression(AurGroupExpression expression);
 }

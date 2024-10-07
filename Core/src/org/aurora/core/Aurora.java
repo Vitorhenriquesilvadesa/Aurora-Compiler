@@ -2,6 +2,7 @@ package org.aurora.core;
 
 import org.aurora.compiler.CompilationPipeline;
 import org.aurora.interceptor.AurParsedASTPrinterInterceptor;
+import org.aurora.interceptor.AurScanTokenPrinterInterceptor;
 import org.aurora.interpreter.AurInterpreterPass;
 import org.aurora.parser.AurParsePass;
 import org.aurora.scanner.AurScanPass;

@@ -1,19 +1,19 @@
 package org.aurora.parser;
 
 import org.aurora.component.AurIOComponent;
-import org.aurora.parser.expression.AurExpressionNode;
+import org.aurora.parser.statement.AurStatementNode;
 
 import java.util.List;
 
 public class ParsedData extends AurIOComponent {
 
-    private final List<AurExpressionNode> expressions;
+    private final List<AurStatementNode> expressions;
 
-    public ParsedData(List<AurExpressionNode> expressions) {
+    public ParsedData(List<AurStatementNode> expressions) {
         this.expressions = expressions;
     }
 
-    public List<AurExpressionNode> getExpressions() {
+    public List<AurStatementNode> getExpressions() {
         return expressions;
     }
 
