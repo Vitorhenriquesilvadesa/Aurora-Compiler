@@ -7,6 +7,7 @@ import java.util.List;
 
 public class FileExtensionValidator extends AurValidationComponent<String> {
 
+
     private final List<String> allowedExtensions;
 
     public FileExtensionValidator(String... allowedExtensions) {

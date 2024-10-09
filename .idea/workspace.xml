@@ -4,38 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b2ecc96-c289-4e2d-ab0f-dc6a1ce5061f" name="Changes" comment="Adding statements to Parsing Pass.">
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/binary/AurBinaryCodes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/binary/AurBytecode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/binary/AurBytecodeEmissionPass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/binary/BytecodeHeader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/compiler/AurCompiledCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/compiler/AurInstruction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/compiler/AurInstructionCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/interceptor/AurBytecodeDisassemblerInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/interceptor/AurBytecodePrinterInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/type/AurValue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/type/AurValueType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/util/HashUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/test.abc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/test.disassemble" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/compiler/AurCompiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/compiler/AurCompiler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/component/AurIOComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/component/AurIOComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/interceptor/AurParsedASTPrinterInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/interceptor/AurParsedASTPrinterInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/interceptor/AurScanTokenPrinterInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/interceptor/AurScanTokenPrinterInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/interpreter/AurInterpretPass.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/interpreter/AurInterpretPass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/interpreter/AurInterpretResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/interpreter/AurInterpretResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/AurParsePass.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/AurParsePass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/ParsedData.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/AurParsedData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/AurScanPass.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/AurScanPass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/ScannedData.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/AurScannedData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/TokenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/TokenType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/src/org/aurora/core/Aurora.java" beforeDir="false" afterPath="$PROJECT_DIR$/Core/src/org/aurora/core/Aurora.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/test.aurora" beforeDir="false" afterPath="$PROJECT_DIR$/res/test.aurora" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/res/test.xml" afterDir="false" />
-    </list>
+    <list default="true" id="7b2ecc96-c289-4e2d-ab0f-dc6a1ce5061f" name="Changes" comment="Adding Java AurVirtualMachine Emulator If and Else bytecode to compiler." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,10 +52,11 @@
   "keyToString": {
     "Application.Aurora.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "extract.method.default.visibility": "private",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "/home/vitor/IdeaProjects/Aurora/Compiler/src/org/aurora",
+    "last_opened_file_path": "/home/vitor/Github/Java/Helix",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -102,6 +72,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.aurora.component" />
       <recent name="org.aurora" />
       <recent name="org.aurora.compiler" />
       <recent name="org.aurora.parser.statement" />
@@ -139,7 +110,12 @@
       <workItem from="1728297664072" duration="1523000" />
       <workItem from="1728313637810" duration="8967000" />
       <workItem from="1728383970847" duration="7528000" />
-      <workItem from="1728409159704" duration="19923000" />
+      <workItem from="1728409159704" duration="20248000" />
+      <workItem from="1728470226165" duration="439000" />
+      <workItem from="1728470962174" duration="3540000" />
+      <workItem from="1728476481140" duration="5665000" />
+      <workItem from="1728496242183" duration="4874000" />
+      <workItem from="1728504648853" duration="10324000" />
     </task>
     <task id="LOCAL-00001" summary="First commi.">
       <option name="closed" value="true" />
@@ -197,7 +173,39 @@
       <option name="project" value="LOCAL" />
       <updated>1728317491057</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Initializing Bytecode Compilation system.">
+      <option name="closed" value="true" />
+      <created>1728437581294</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1728437581294</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Adding Java AurVirtualMachine Emulator If and Else bytecode to compiler.">
+      <option name="closed" value="true" />
+      <created>1728518223434</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1728518223434</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Adding Java AurVirtualMachine Emulator If and Else bytecode to compiler.">
+      <option name="closed" value="true" />
+      <created>1728518232587</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1728518232587</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Adding Java AurVirtualMachine Emulator If and Else bytecode to compiler.">
+      <option name="closed" value="true" />
+      <created>1728518242218</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1728518242218</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,7 +227,9 @@
     <MESSAGE value="First commit." />
     <MESSAGE value="Initializing compilation Parse Pass." />
     <MESSAGE value="Adding statements to Parsing Pass." />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding statements to Parsing Pass." />
+    <MESSAGE value="Initializing Bytecode Compilation system." />
+    <MESSAGE value="Adding Java AurVirtualMachine Emulator If and Else bytecode to compiler." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding Java AurVirtualMachine Emulator If and Else bytecode to compiler." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

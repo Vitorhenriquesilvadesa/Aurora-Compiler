@@ -6,6 +6,7 @@ import org.aurora.pass.AurCompilationPass;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("rawtypes")
 public class CompilationPipeline {
 
     private final List<AurCompilationPass<? extends AurIOComponent, ? extends AurIOComponent>> passes = new ArrayList<>();
@@ -17,15 +18,15 @@ public class CompilationPipeline {
     public void run(AurIOComponent input) {
         AurIOComponent currentInput = input;
         for (AurCompilationPass<? extends AurIOComponent, ? extends AurIOComponent> pass : passes) {
-            System.out.println("Running " + pass.getDebugName() + ".");
+            // System.out.println("Running " + pass.getDebugName() + ".");
             currentInput = runPass(pass, currentInput);
         }
     }
 
-    public void runWithInterceptors(AurIOComponent input) throws Exception {
+    public void runWithInterceptors(AurIOComponent input) {
         AurIOComponent currentInput = input;
         for (AurCompilationPass<? extends AurIOComponent, ? extends AurIOComponent> pass : passes) {
-            System.out.println("Running " + pass.getDebugName() + " with interceptors.");
+            //System.out.println("Running " + pass.getDebugName() + " with interceptors.");
             currentInput = runPassWithInterceptors(pass, currentInput);
         }
     }

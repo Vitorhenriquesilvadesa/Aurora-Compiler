@@ -9,7 +9,7 @@ import org.aurora.type.AurValueType;
 import java.io.*;
 import java.util.Base64;
 
-public class AurBytecodeDisassemblerInterceptor implements AurPassiveInterceptor<AurCompiledCode, AurBytecode> {
+public class AurBytecodeDecompilerInterceptor implements AurPassiveInterceptor<AurCompiledCode, AurBytecode> {
 
     int offset = 0;
     int depth = 0;
@@ -17,7 +17,7 @@ public class AurBytecodeDisassemblerInterceptor implements AurPassiveInterceptor
 
     private final PrintWriter writer;
 
-    public AurBytecodeDisassemblerInterceptor() {
+    public AurBytecodeDecompilerInterceptor() {
         try {
             writer = new PrintWriter(new FileWriter("/home/vitor/IdeaProjects/Aurora/res/test.disassemble"));
         } catch (IOException e) {
@@ -123,8 +123,8 @@ public class AurBytecodeDisassemblerInterceptor implements AurPassiveInterceptor
     }
 
     private void disassembleChar(AurBytecode input) {
-        byte charValue = peek(input);
         advance();
+        byte charValue = peek(input);
         advance();
 
         char value = (char) charValue;
@@ -226,6 +226,92 @@ public class AurBytecodeDisassemblerInterceptor implements AurPassiveInterceptor
                 writelnIndented("DIV");
                 advance();
                 break;
+
+            case AurInstructionCode.LESS:
+                writelnIndented("LESS");
+                advance();
+                break;
+
+            case AurInstructionCode.LESS_EQUAL:
+                writelnIndented("LESS_EQUAL");
+                advance();
+                break;
+
+            case AurInstructionCode.GREATER:
+                writelnIndented("GREATER");
+                advance();
+                break;
+
+            case AurInstructionCode.GREATER_EQUAL:
+                writelnIndented("GREATER_EQUAL");
+                advance();
+                break;
+
+            case AurInstructionCode.EQUAL_EQUAL:
+                writelnIndented("EQUAL_EQUAL");
+                advance();
+                break;
+
+            case AurInstructionCode.MARK_EQUAL:
+                writelnIndented("NOT_EQUAL");
+                advance();
+                break;
+
+            case AurInstructionCode.NEGATE:
+                writelnIndented("NEGATE");
+                advance();
+                break;
+
+            case AurInstructionCode.INVERSE:
+                writelnIndented("INVERSE");
+                advance();
+                break;
+
+            case AurInstructionCode.AND:
+                writelnIndented("AND");
+                advance();
+                break;
+
+            case AurInstructionCode.OR:
+                writelnIndented("OR");
+                advance();
+                break;
+
+            case AurInstructionCode.PRINT:
+                writelnIndented("PRINT");
+                advance();
+                break;
+
+            case AurInstructionCode.JUMP: {
+                writeIndented("BRANCH");
+                writeIndented("");
+
+                advance();
+                byte lowByte = peek(input);
+                advance();
+                byte highByte = peek(input);
+
+                short offset = (short) ((highByte << 8) | (lowByte & 0xFF));
+                advance();
+
+                writelnIndented("(" + offset + ")");
+                break;
+            }
+
+            case AurInstructionCode.JUMP_IF_FALSE: {
+                writeIndented("B_IF_F");
+                writeIndented("");
+                advance();
+                byte lowByte = peek(input);
+                advance();
+                byte highByte = peek(input);
+
+                short offset = (short) ((highByte << 8) | (lowByte & 0xFF));
+                advance();
+
+                writelnIndented("(" + offset + ")");
+                break;
+            }
         }
     }
 
@@ -294,5 +380,4 @@ public class AurBytecodeDisassemblerInterceptor implements AurPassiveInterceptor
     private String sameLineIndent(String value) {
         return " ".repeat((depth + 1) * tabSize - value.length());
     }
-
 }

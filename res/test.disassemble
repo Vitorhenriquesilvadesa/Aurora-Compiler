@@ -1,24 +1,27 @@
 HEADER:
-    3eQnP5acozR0oC89AABalwD9R88y/iYDdMFytYePIBkuXf1msGX2p0HKysLoIezxW5nsHBcdKjNbSrtWJEXJAVpsncfDymbuNK+BFnzuh8I=
+    ohujakb44Q8ZBBg5OpEPXkOsGA5q9W/N5T1fiWDTucIgXE6dzpzr7XzIP4ZA8EozOv4h2MW+Tb7STNvAJm/R2VpsncfDymbuNK+BFnzuh8I=
 
 MAIN:
-    LOAD_CONST    (0)    ; 1.5
-    LOAD_CONST    (1)    ; 2.333
-    LOAD_CONST    (2)    ; 3.34343
-    ADD
-    LOAD_CONST    (3)    ; 3
-    LOAD_CONST    (4)    ; 2
-    ADD
-    LOAD_CONST    (5)    ; 1
-    SUB
+    LOAD_CONST    (0)    ; 3
+    LOAD_CONST    (1)    ; 4
+    LESS
+    B_IF_F        (6)
+    LOAD_CONST    (2)    ; Hello
+    PRINT
+    BRANCH        (12)
+    LOAD_CONST    (3)    ; 2
+    LOAD_CONST    (3)    ; 2
     MUL
-    DIV
+    PRINT
+    LOAD_CONST    (4)    ; World
+    PRINT
+    LOAD_CONST    (4)    ; World
+    PRINT
     RETURN
 
 TABLE:
-    FLOAT:      1.5
-    FLOAT:      2.333
-    FLOAT:      3.34343
     INT:        3
+    INT:        4
+    STRING:    "Hello"
     INT:        2
-    INT:        1
+    STRING:    "World"

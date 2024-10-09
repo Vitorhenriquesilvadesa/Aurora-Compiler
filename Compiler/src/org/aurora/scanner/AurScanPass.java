@@ -30,6 +30,7 @@ public class AurScanPass extends AurCompilationPass<AurFile, AurScannedData> {
         keywords.put("else", ELSE);
         keywords.put("true", TRUE);
         keywords.put("false", FALSE);
+        keywords.put("print", PRINT);
     }
 
     @Override
@@ -152,6 +153,10 @@ public class AurScanPass extends AurCompilationPass<AurFile, AurScannedData> {
 
             case '}':
                 makeToken(RIGHT_BRACE);
+                break;
+
+            case ';':
+                makeToken(SEMICOLON);
                 break;
 
             case ' ':

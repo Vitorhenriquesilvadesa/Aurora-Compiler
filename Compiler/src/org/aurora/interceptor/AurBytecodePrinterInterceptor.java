@@ -8,6 +8,7 @@ import org.aurora.type.AurValueType;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 
 public class AurBytecodePrinterInterceptor implements AurPassiveInterceptor<AurParsedData, AurCompiledCode> {
@@ -23,8 +24,7 @@ public class AurBytecodePrinterInterceptor implements AurPassiveInterceptor<AurP
     @Override
     public void afterState(AurCompiledCode input) {
 
-        try (PrintWriter writer = new PrintWriter(new FileWriter("/home/vitor/IdeaProjects/Aurora/res/test.disassemble"))
-        ) {
+        try (PrintStream writer = System.out) {
             writer.println("MAIN:");
             beginScope();
 
@@ -79,7 +79,7 @@ public class AurBytecodePrinterInterceptor implements AurPassiveInterceptor<AurP
         }
     }
 
-    private void writeConstantTable(AurCompiledCode code, PrintWriter writer) throws IOException {
+    private void writeConstantTable(AurCompiledCode code, PrintStream writer) throws IOException {
 
         writer.println();
         writer.println(indent() + "TABLE:");

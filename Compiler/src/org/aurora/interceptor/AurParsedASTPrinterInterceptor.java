@@ -2,10 +2,7 @@ package org.aurora.interceptor;
 
 import org.aurora.parser.AurParsedData;
 import org.aurora.parser.expression.*;
-import org.aurora.parser.statement.AurBodyStatement;
-import org.aurora.parser.statement.AurExpressionStatement;
-import org.aurora.parser.statement.AurIfStatement;
-import org.aurora.parser.statement.AurStatementNode;
+import org.aurora.parser.statement.*;
 import org.aurora.processor.AurExpressionNodeProcessor;
 import org.aurora.processor.AurStatementNodeProcessor;
 import org.aurora.scanner.AurScannedData;
@@ -34,7 +31,7 @@ public class AurParsedASTPrinterInterceptor implements AurPassiveInterceptor<Aur
             System.out.println("<Program>");
             beginScope();
 
-            for (AurStatementNode statementNode : input.getExpressions()) {
+            for (AurStatementNode statementNode : input.getStatements()) {
                 String formatedExpression = format(statementNode);
                 System.out.println(formatedExpression);
                 printer.println(formatedExpression);
@@ -233,5 +230,10 @@ public class AurParsedASTPrinterInterceptor implements AurPassiveInterceptor<Aur
         newLine(sb);
 
         return sb.toString();
+    }
+
+    @Override
+    public String processPrintStatement(PrintStatement statement) {
+        return "";
     }
 }
