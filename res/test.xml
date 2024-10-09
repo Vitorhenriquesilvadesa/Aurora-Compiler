@@ -1,14 +1,42 @@
 <Program>
-  <Expression>
-    <Binary>
-      <Binary>
-        <Literal>"Hello"</Literal>
-        <Operator>PLUS</Operator>
-        <Literal>"World"</Literal>
-      </Binary>
-      <Operator>PLUS</Operator>
-      <Literal>k</Literal>
-    </Binary>
-  </Expression>
+  <IfStatement>
+    <Condition>
+      <Unary>
+        </Operator MINUS>
+        <Unary>
+          </Operator MARK>
+          <Unary>
+            </Operator MINUS>
+            <Unary>
+              </Operator MARK>
+              <Unary>
+                </Operator MINUS>
+                <Unary>
+                  </Operator MARK>
+                  <Unary>
+                    </Operator MINUS>
+                    <Unary>
+                      </Operator MARK>
+                      <Unary>
+                        </Operator MINUS>
+                        <Unary>
+                          </Operator MARK>
+                          <Literal>3</Literal>
+                        </Unary>
+                      </Unary>
+                    </Unary>
+                  </Unary>
+                </Unary>
+              </Unary>
+            </Unary>
+          </Unary>
+        </Unary>
+      </Unary>
+    </Condition>
+    <Then>
+      <Body>
 
+      </Body>
+    </Then>
+  </IfStatement>
 </Program>

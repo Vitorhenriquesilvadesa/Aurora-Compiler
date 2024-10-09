@@ -12,4 +12,5 @@ public class AurValueType {
     public static final byte CHAR = 4;
     public static final byte INSTANCE = 5;
     public static final byte OBJECT = 6;
+    public static final byte NULL = 7;
 }

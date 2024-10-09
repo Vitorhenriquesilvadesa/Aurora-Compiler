@@ -13,6 +13,11 @@ public class AurValue {
 
     @Override
     public String toString() {
+        if (type == AurValueType.STRING) {
+            String strValue = ((String) value);
+            return strValue.substring(1, strValue.length() - 1);
+        }
+
         return value.toString();
     }
 

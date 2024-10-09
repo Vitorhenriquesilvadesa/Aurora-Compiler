@@ -8,14 +8,17 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class AurBytecode extends AurIOComponent<AurBytecode> {
 
     public final byte[] code;
+    public final List<Byte> rawCode;
     public final Map<Byte, AurValue> constantTable;
 
-    public AurBytecode(String path, Map<Byte, AurValue> constantTable) {
+    public AurBytecode(String path, List<Byte> rawCode, Map<Byte, AurValue> constantTable) {
+        this.rawCode = rawCode;
         try {
             this.code = Files.readAllBytes(Path.of(path));
             this.constantTable = constantTable;
@@ -24,14 +27,15 @@ public class AurBytecode extends AurIOComponent<AurBytecode> {
         }
     }
 
-    private AurBytecode(byte[] code, Map<Byte, AurValue> constantTable) {
+    private AurBytecode(byte[] code, List<Byte> rawCode, Map<Byte, AurValue> constantTable) {
         this.code = code;
+        this.rawCode = rawCode;
         this.constantTable = constantTable;
     }
 
     @Override
     public AurBytecode clone() {
-        return new AurBytecode(this.code, constantTable);
+        return new AurBytecode(this.code, this.rawCode, constantTable);
     }
 
     @Override

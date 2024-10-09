@@ -1,11 +1,11 @@
 package org.aurora.core;
 
 import org.aurora.binary.AurBytecodeEmissionPass;
-import org.aurora.compiler.AurCompiler;
+import org.aurora.compiler.AurCompilePass;
 import org.aurora.compiler.CompilationPipeline;
-import org.aurora.interceptor.AurBytecodeDisassemblerInterceptor;
-import org.aurora.interceptor.AurBytecodePrinterInterceptor;
-import org.aurora.interceptor.AurParsedASTPrinterInterceptor;
+import org.aurora.emulator.AurVirtualMachine;
+import org.aurora.interceptor.AurBytecodeDecompilerInterceptor;
+import org.aurora.interpreter.AurInterpretPass;
 import org.aurora.parser.AurParsePass;
 import org.aurora.scanner.AurScanPass;
 import org.aurora.util.AurFile;
@@ -16,9 +16,10 @@ public class Aurora {
 
         compilationPipeline.insertStage(new AurScanPass());
         compilationPipeline.insertStage(new AurParsePass());
-        compilationPipeline.insertStage(new AurCompiler());
-        compilationPipeline.insertStage(new AurBytecodeEmissionPass()
-                .addInterceptor(new AurBytecodeDisassemblerInterceptor()));
+        //compilationPipeline.insertStage(new AurCompilePass());
+        //compilationPipeline.insertStage(new AurBytecodeEmissionPass().addInterceptor(new AurBytecodeDecompilerInterceptor()));
+        //compilationPipeline.insertStage(new AurVirtualMachine());
+        compilationPipeline.insertStage(new AurInterpretPass());
 
         AurFile file = new AurFile(args[0]);
 

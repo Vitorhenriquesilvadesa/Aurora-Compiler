@@ -12,6 +12,8 @@ import javax.crypto.spec.SecretKeySpec;
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class AurBytecodeEmissionPass extends AurCompilationPass<AurCompiledCode, AurBytecode> {
@@ -47,6 +49,8 @@ public class AurBytecodeEmissionPass extends AurCompilationPass<AurCompiledCode,
 
     @Override
     protected AurBytecode pass(AurCompiledCode input) {
+        List<Byte> rawCode = new ArrayList<>();
+
         try {
             writer.writeByte(AurBinaryCodes.HEADER);
             byte[] hashBytes = new byte[input.code.size()];
@@ -68,6 +72,7 @@ public class AurBytecodeEmissionPass extends AurCompilationPass<AurCompiledCode,
 
             for (Byte byteCode : input.code) {
                 writer.writeByte(byteCode);
+                rawCode.add(byteCode);
             }
 
             writer.writeByte(AurBinaryCodes.TABLE);
@@ -120,7 +125,7 @@ public class AurBytecodeEmissionPass extends AurCompilationPass<AurCompiledCode,
             throw new RuntimeException(e);
         }
 
-        return new AurBytecode(filePath, input.constantTable);
+        return new AurBytecode(filePath, rawCode, input.constantTable);
     }
 
     private byte[] encrypt(String hash) throws Exception {

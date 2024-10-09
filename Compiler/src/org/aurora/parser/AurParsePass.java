@@ -2,10 +2,7 @@ package org.aurora.parser;
 
 import org.aurora.exception.AurParseException;
 import org.aurora.parser.expression.*;
-import org.aurora.parser.statement.AurBodyStatement;
-import org.aurora.parser.statement.AurExpressionStatement;
-import org.aurora.parser.statement.AurIfStatement;
-import org.aurora.parser.statement.AurStatementNode;
+import org.aurora.parser.statement.*;
 import org.aurora.pass.AurCompilationPass;
 import org.aurora.scanner.AurScannedData;
 import org.aurora.scanner.Token;
@@ -63,8 +60,17 @@ public class AurParsePass extends AurCompilationPass<AurScannedData, AurParsedDa
     private AurStatementNode statement() {
         if (match(IF)) return ifStatement();
         if (match(LEFT_BRACE)) return bodyStatement();
+        if (match(PRINT)) return printStatement();
 
         return expressionStatement();
+    }
+
+    private AurStatementNode printStatement() {
+        consume(LEFT_PAREN, "Expect '(' after 'print'.");
+        AurExpressionNode expression = expression();
+        consume(RIGHT_PAREN, "Expect ')' after argument.");
+        consume(SEMICOLON, "Expect ';' after call.");
+        return new PrintStatement(expression);
     }
 
     private AurStatementNode bodyStatement() {

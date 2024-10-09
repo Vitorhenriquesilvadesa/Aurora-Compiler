@@ -13,7 +13,7 @@ public class AurParsedData extends AurIOComponent<AurParsedData> {
         this.expressions = expressions;
     }
 
-    public List<AurStatementNode> getExpressions() {
+    public List<AurStatementNode> getStatements() {
         return expressions;
     }
 
