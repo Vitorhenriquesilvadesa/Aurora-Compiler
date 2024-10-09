@@ -2,7 +2,7 @@ package org.aurora.interpreter;
 
 import org.aurora.component.AurIOComponent;
 
-public class AurInterpretResult extends AurIOComponent {
+public class AurInterpretResult extends AurIOComponent<AurInterpretResult> {
 
     private final int result;
 
@@ -11,7 +11,7 @@ public class AurInterpretResult extends AurIOComponent {
     }
 
     @Override
-    public AurIOComponent clone() {
+    public AurInterpretResult clone() {
         return new AurInterpretResult(result);
     }
 }

@@ -1,31 +1,14 @@
 <Program>
-  <IfStatement>
-    <Condition>
-      <Logical>
-        <Literal>3</Literal>
-        <Comparator>GREATER</Comparator>
-        <Literal>2</Literal>
-      </Logical>
-    </Condition>
-    <Then>
-      <Body>
+  <Expression>
+    <Binary>
+      <Binary>
+        <Literal>"Hello"</Literal>
+        <Operator>PLUS</Operator>
+        <Literal>"World"</Literal>
+      </Binary>
+      <Operator>PLUS</Operator>
+      <Literal>k</Literal>
+    </Binary>
+  </Expression>
 
-      </Body>
-    </Then>
-    <Else>
-      <IfStatement>
-        <Condition>
-          <Logical>
-            <Literal>3</Literal>
-            <Comparator>EQUAL_EQUAL</Comparator>
-            <Literal>3</Literal>
-          </Logical>
-        </Condition>
-        <Then>
-          <Body>
-
-          </Body>
-        </Then>
-      </IfStatement>    </Else>
-  </IfStatement>
 </Program>

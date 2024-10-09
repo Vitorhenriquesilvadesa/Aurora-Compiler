@@ -1,7 +1,7 @@
 package org.aurora.component;
 
-public abstract class AurIOComponent implements Cloneable {
+public abstract class AurIOComponent<T extends AurIOComponent<T>> implements Cloneable {
 
     @Override
-    public abstract AurIOComponent clone();
+    public abstract AurIOComponent<T> clone();
 }

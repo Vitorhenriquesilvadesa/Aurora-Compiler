@@ -5,7 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b2ecc96-c289-4e2d-ab0f-dc6a1ce5061f" name="Changes" comment="Adding statements to Parsing Pass.">
+      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/binary/AurBinaryCodes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/binary/AurBytecode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/binary/AurBytecodeEmissionPass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/binary/BytecodeHeader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/compiler/AurCompiledCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/compiler/AurInstruction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/compiler/AurInstructionCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/interceptor/AurBytecodeDisassemblerInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/interceptor/AurBytecodePrinterInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/type/AurValue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/type/AurValueType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/util/HashUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/test.abc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/test.disassemble" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/compiler/AurCompiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/compiler/AurCompiler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/component/AurIOComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/component/AurIOComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/interceptor/AurParsedASTPrinterInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/interceptor/AurParsedASTPrinterInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/interceptor/AurScanTokenPrinterInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/interceptor/AurScanTokenPrinterInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/interpreter/AurInterpretPass.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/interpreter/AurInterpretPass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/interpreter/AurInterpretResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/interpreter/AurInterpretResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/AurParsePass.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/AurParsePass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/ParsedData.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/AurParsedData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/AurScanPass.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/AurScanPass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/ScannedData.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/AurScannedData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/TokenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/TokenType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/src/org/aurora/core/Aurora.java" beforeDir="false" afterPath="$PROJECT_DIR$/Core/src/org/aurora/core/Aurora.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/test.aurora" beforeDir="false" afterPath="$PROJECT_DIR$/res/test.aurora" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/res/test.xml" afterDir="false" />
@@ -18,6 +44,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -37,6 +64,9 @@
     &quot;accountId&quot;: &quot;1c473d75-37dd-4c79-83d8-7ca521848027&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/res/test.abc" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
@@ -56,6 +86,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
+    "last_directory_selection": "/home/vitor/IdeaProjects/Aurora/Compiler/src/org/aurora",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -71,6 +102,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.aurora" />
+      <recent name="org.aurora.compiler" />
       <recent name="org.aurora.parser.statement" />
       <recent name="org.aurora.parser" />
     </key>
@@ -104,7 +137,9 @@
       <workItem from="1728243424845" duration="255000" />
       <workItem from="1728243690524" duration="21177000" />
       <workItem from="1728297664072" duration="1523000" />
-      <workItem from="1728313637810" duration="1549000" />
+      <workItem from="1728313637810" duration="8967000" />
+      <workItem from="1728383970847" duration="7528000" />
+      <workItem from="1728409159704" duration="19923000" />
     </task>
     <task id="LOCAL-00001" summary="First commi.">
       <option name="closed" value="true" />
@@ -154,11 +189,30 @@
       <option name="project" value="LOCAL" />
       <updated>1728298090245</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Adding statements to Parsing Pass.">
+      <option name="closed" value="true" />
+      <created>1728317491057</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1728317491057</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commi." />

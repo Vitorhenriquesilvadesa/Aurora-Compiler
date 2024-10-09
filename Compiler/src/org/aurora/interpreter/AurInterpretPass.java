@@ -1,13 +1,13 @@
 package org.aurora.interpreter;
 
-import org.aurora.parser.ParsedData;
+import org.aurora.parser.AurParsedData;
 import org.aurora.pass.AurCompilationPass;
 
-public class AurInterpretPass extends AurCompilationPass<ParsedData, AurInterpretResult> {
+public class AurInterpretPass extends AurCompilationPass<AurParsedData, AurInterpretResult> {
 
     @Override
-    public Class<ParsedData> getInputType() {
-        return ParsedData.class;
+    public Class<AurParsedData> getInputType() {
+        return AurParsedData.class;
     }
 
     @Override
@@ -21,7 +21,7 @@ public class AurInterpretPass extends AurCompilationPass<ParsedData, AurInterpre
     }
 
     @Override
-    protected AurInterpretResult pass(ParsedData input) {
+    protected AurInterpretResult pass(AurParsedData input) {
         return null;
     }
 }

@@ -1,6 +1,8 @@
 package org.aurora.scanner;
 
+import org.aurora.type.AurValue;
 import org.aurora.pass.AurCompilationPass;
+import org.aurora.type.AurValueType;
 import org.aurora.util.AurFile;
 
 import java.util.ArrayList;
@@ -10,7 +12,7 @@ import java.util.Map;
 
 import static org.aurora.scanner.TokenType.*;
 
-public class AurScanPass extends AurCompilationPass<AurFile, ScannedData> {
+public class AurScanPass extends AurCompilationPass<AurFile, AurScannedData> {
 
     private int line;
     private List<Token> tokens;
@@ -26,6 +28,8 @@ public class AurScanPass extends AurCompilationPass<AurFile, ScannedData> {
         keywords.put("locked", LOCKED);
         keywords.put("if", IF);
         keywords.put("else", ELSE);
+        keywords.put("true", TRUE);
+        keywords.put("false", FALSE);
     }
 
     @Override
@@ -34,8 +38,8 @@ public class AurScanPass extends AurCompilationPass<AurFile, ScannedData> {
     }
 
     @Override
-    public Class<ScannedData> getOutputType() {
-        return ScannedData.class;
+    public Class<AurScannedData> getOutputType() {
+        return AurScannedData.class;
     }
 
     @Override
@@ -44,11 +48,11 @@ public class AurScanPass extends AurCompilationPass<AurFile, ScannedData> {
     }
 
     @Override
-    protected ScannedData pass(AurFile input) {
+    protected AurScannedData pass(AurFile input) {
         return scanTokens(input);
     }
 
-    private ScannedData scanTokens(AurFile input) {
+    private AurScannedData scanTokens(AurFile input) {
         resetInternalState(input);
 
         while (!isAtEnd()) {
@@ -58,7 +62,7 @@ public class AurScanPass extends AurCompilationPass<AurFile, ScannedData> {
 
         makeToken(EOF, "EOF", null);
 
-        return new ScannedData(tokens);
+        return new AurScannedData(tokens);
     }
 
     private boolean isAtEnd() {
@@ -159,6 +163,14 @@ public class AurScanPass extends AurCompilationPass<AurFile, ScannedData> {
                 line++;
                 break;
 
+            case '"':
+                string();
+                break;
+
+            case '\'':
+                character();
+                break;
+
             default:
 
                 if (isDigit(c)) {
@@ -173,11 +185,36 @@ public class AurScanPass extends AurCompilationPass<AurFile, ScannedData> {
         }
     }
 
+    private void character() {
+        char c = peek();
+        advance();
+        advance();
+        makeToken(CHAR, "" + c, new AurValue(c, AurValueType.CHAR));
+    }
+
+    private void string() {
+        while (!match('"')) {
+            advance();
+        }
+
+        String text = source.substring(start, current);
+        makeToken(STRING, text, new AurValue(text, AurValueType.STRING));
+    }
+
     private void identifier() {
         while (isAlphaNumeric(peek())) advance();
         String text = source.substring(start, current);
+        TokenType type = keywords.getOrDefault(text, IDENTIFIER);
 
-        makeToken(keywords.getOrDefault(text, IDENTIFIER));
+        if (type != IDENTIFIER) {
+            if (type != TRUE && type != FALSE) {
+                makeToken(type, null);
+            } else {
+                makeToken(type, new AurValue(Boolean.parseBoolean(text), AurValueType.BOOL));
+            }
+        } else {
+            makeToken(type, null);
+        }
     }
 
     private void number() {
@@ -187,10 +224,18 @@ public class AurScanPass extends AurCompilationPass<AurFile, ScannedData> {
                 advance();
             } while (isDigit(peek()));
 
-            makeToken(FLOAT, Float.parseFloat(source.substring(start, current).replaceAll("_", "")));
+            AurValue value = new AurValue(
+                    Float.parseFloat(source.substring(start, current).replaceAll("_", "")),
+                    AurValueType.FLOAT);
+
+            makeToken(FLOAT, value);
 
         } else {
-            makeToken(INT, Integer.parseInt(source.substring(start, current).replaceAll("_", "")));
+            AurValue value = new AurValue(
+                    Integer.parseInt(source.substring(start, current).replaceAll("_", "")),
+                    AurValueType.INT);
+
+            makeToken(INT, value);
         }
     }
 
@@ -241,12 +286,12 @@ public class AurScanPass extends AurCompilationPass<AurFile, ScannedData> {
         makeToken(type, null);
     }
 
-    private void makeToken(TokenType type, Object literal) {
+    private void makeToken(TokenType type, AurValue literal) {
         String lexeme = source.substring(start, current);
         makeToken(type, lexeme, literal);
     }
 
-    private void makeToken(TokenType type, String lexeme, Object literal) {
+    private void makeToken(TokenType type, String lexeme, AurValue literal) {
         Token token = new Token(type, lexeme, literal, line);
         tokens.add(token);
     }

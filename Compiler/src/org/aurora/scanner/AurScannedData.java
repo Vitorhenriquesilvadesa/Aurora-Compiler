@@ -4,11 +4,11 @@ import org.aurora.component.AurIOComponent;
 
 import java.util.List;
 
-public class ScannedData extends AurIOComponent {
+public class AurScannedData extends AurIOComponent<AurScannedData> {
 
     private final List<Token> tokens;
 
-    public ScannedData(List<Token> tokens) {
+    public AurScannedData(List<Token> tokens) {
         this.tokens = tokens;
     }
 
@@ -17,7 +17,7 @@ public class ScannedData extends AurIOComponent {
     }
 
     @Override
-    public AurIOComponent clone() {
-        return new ScannedData(tokens);
+    public AurScannedData clone() {
+        return new AurScannedData(tokens);
     }
 }

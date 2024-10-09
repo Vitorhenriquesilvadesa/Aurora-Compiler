@@ -7,7 +7,7 @@ import org.aurora.parser.statement.AurExpressionStatement;
 import org.aurora.parser.statement.AurIfStatement;
 import org.aurora.parser.statement.AurStatementNode;
 import org.aurora.pass.AurCompilationPass;
-import org.aurora.scanner.ScannedData;
+import org.aurora.scanner.AurScannedData;
 import org.aurora.scanner.Token;
 import org.aurora.scanner.TokenType;
 
@@ -16,20 +16,20 @@ import java.util.List;
 
 import static org.aurora.scanner.TokenType.*;
 
-public class AurParsePass extends AurCompilationPass<ScannedData, ParsedData> {
+public class AurParsePass extends AurCompilationPass<AurScannedData, AurParsedData> {
 
 
     private List<Token> tokens;
     private int current;
 
     @Override
-    public Class<ScannedData> getInputType() {
-        return ScannedData.class;
+    public Class<AurScannedData> getInputType() {
+        return AurScannedData.class;
     }
 
     @Override
-    public Class<ParsedData> getOutputType() {
-        return ParsedData.class;
+    public Class<AurParsedData> getOutputType() {
+        return AurParsedData.class;
     }
 
     @Override
@@ -38,16 +38,16 @@ public class AurParsePass extends AurCompilationPass<ScannedData, ParsedData> {
     }
 
     @Override
-    protected ParsedData pass(ScannedData input) {
+    protected AurParsedData pass(AurScannedData input) {
         return parseTokens(input);
     }
 
-    private void resetInternalState(ScannedData input) {
+    private void resetInternalState(AurScannedData input) {
         tokens = input.getTokens();
         current = 0;
     }
 
-    private ParsedData parseTokens(ScannedData input) {
+    private AurParsedData parseTokens(AurScannedData input) {
         resetInternalState(input);
 
         List<AurStatementNode> statements = new ArrayList<>();
@@ -57,7 +57,7 @@ public class AurParsePass extends AurCompilationPass<ScannedData, ParsedData> {
             statements.add(statementNode);
         }
 
-        return new ParsedData(statements);
+        return new AurParsedData(statements);
     }
 
     private AurStatementNode statement() {
@@ -187,7 +187,7 @@ public class AurParsePass extends AurCompilationPass<ScannedData, ParsedData> {
     }
 
     private AurExpressionNode literal() {
-        if (match(INT, FLOAT)) {
+        if (match(INT, FLOAT, TRUE, FALSE, STRING, CHAR)) {
             return new AurLiteralExpression(previous());
         }
 

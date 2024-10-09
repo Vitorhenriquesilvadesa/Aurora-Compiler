@@ -1,6 +1,6 @@
 package org.aurora.interceptor;
 
-import org.aurora.parser.ParsedData;
+import org.aurora.parser.AurParsedData;
 import org.aurora.parser.expression.*;
 import org.aurora.parser.statement.AurBodyStatement;
 import org.aurora.parser.statement.AurExpressionStatement;
@@ -8,24 +8,24 @@ import org.aurora.parser.statement.AurIfStatement;
 import org.aurora.parser.statement.AurStatementNode;
 import org.aurora.processor.AurExpressionNodeProcessor;
 import org.aurora.processor.AurStatementNodeProcessor;
-import org.aurora.scanner.ScannedData;
+import org.aurora.scanner.AurScannedData;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class AurParsedASTPrinterInterceptor implements AurPassiveInterceptor<ScannedData, ParsedData>, AurExpressionNodeProcessor<String>, AurStatementNodeProcessor<String> {
+public class AurParsedASTPrinterInterceptor implements AurPassiveInterceptor<AurScannedData, AurParsedData>, AurExpressionNodeProcessor<String>, AurStatementNodeProcessor<String> {
 
     private int depth = 0;
     private final int tabSize = 2;
 
     @Override
-    public void beforeState(ScannedData input) {
+    public void beforeState(AurScannedData input) {
 
     }
 
     @Override
-    public void afterState(ParsedData input) {
+    public void afterState(AurParsedData input) {
 
         try (FileWriter writer = new FileWriter("/home/vitor/IdeaProjects/Aurora/res/test.xml")) {
             PrintWriter printer = new PrintWriter(writer);

@@ -1,6 +1,8 @@
 package org.aurora.scanner;
 
-public record Token(TokenType type, String lexeme, Object literal, int line) {
+import org.aurora.type.AurValue;
+
+public record Token(TokenType type, String lexeme, AurValue literal, int line) {
 
     @Override
     public String toString() {

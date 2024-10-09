@@ -5,11 +5,11 @@ import org.aurora.parser.statement.AurStatementNode;
 
 import java.util.List;
 
-public class ParsedData extends AurIOComponent {
+public class AurParsedData extends AurIOComponent<AurParsedData> {
 
     private final List<AurStatementNode> expressions;
 
-    public ParsedData(List<AurStatementNode> expressions) {
+    public AurParsedData(List<AurStatementNode> expressions) {
         this.expressions = expressions;
     }
 
@@ -18,7 +18,7 @@ public class ParsedData extends AurIOComponent {
     }
 
     @Override
-    public AurIOComponent clone() {
-        return new ParsedData(expressions);
+    public AurParsedData clone() {
+        return new AurParsedData(expressions);
     }
 }
