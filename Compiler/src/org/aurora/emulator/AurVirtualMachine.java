@@ -7,8 +7,7 @@ import org.aurora.pass.AurCompilationPass;
 import org.aurora.type.AurValue;
 import org.aurora.type.AurValueType;
 
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class AurVirtualMachine extends AurCompilationPass<AurBytecode, AurNullIOComponent> {
 
@@ -16,6 +15,8 @@ public class AurVirtualMachine extends AurCompilationPass<AurBytecode, AurNullIO
     private int ip;
     private List<Byte> code;
     private List<AurValue> constantTable;
+    private Map<String, AurValue> variables;
+    private List<String> stringPool;
 
     public AurVirtualMachine() {
         stack = new Stack<>();
@@ -24,11 +25,20 @@ public class AurVirtualMachine extends AurCompilationPass<AurBytecode, AurNullIO
     private void execute(AurBytecode bytecode) {
         code = bytecode.rawCode;
         constantTable = bytecode.constantTable.values().stream().toList();
+        variables = new HashMap<>();
+        stringPool = new ArrayList<>();
+
+        stringPool.addAll(bytecode.stringTable.values());
 
         for (ip = 0; ip < bytecode.code.length; ) {
             byte b;
 
             switch (b = readByte()) {
+                case AurInstructionCode.LOAD:
+                    byte index = readByte();
+                    stack.push(variables.get(stringPool.get(index)));
+                    break;
+
                 case AurInstructionCode.LOAD_CONST:
                     loadConst();
                     break;
@@ -87,6 +97,12 @@ public class AurVirtualMachine extends AurCompilationPass<AurBytecode, AurNullIO
                         ip += offset;
                     }
 
+                    break;
+                }
+
+                case AurInstructionCode.DEFINE: {
+                    String name = stringPool.get(readByte());
+                    variables.put(name, stack.pop());
                     break;
                 }
 

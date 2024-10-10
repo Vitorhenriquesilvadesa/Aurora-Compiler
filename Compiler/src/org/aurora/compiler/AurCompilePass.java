@@ -15,6 +15,8 @@ public class AurCompilePass extends AurCompilationPass<AurParsedData, AurCompile
 
     private final Map<AurValue, Byte> constantTable = new HashMap<>();
     private final Map<Byte, AurValue> indexToValue = new HashMap<>();
+    private final List<String> stringPool = new ArrayList<>();
+    private final Map<Byte, String> stringTable = new HashMap<>();
     private byte currentConstantIndex = 0;
 
     @Override
@@ -41,7 +43,7 @@ public class AurCompilePass extends AurCompilationPass<AurParsedData, AurCompile
 
         bytecode.add(AurInstructionCode.RETURN);
 
-        return new AurCompiledCode(bytecode, bytecode, indexToValue);
+        return new AurCompiledCode(bytecode, bytecode, indexToValue, stringTable);
     }
 
     private List<Byte> generateBytecode(AurExpressionNode expression) {
@@ -154,6 +156,16 @@ public class AurCompilePass extends AurCompilationPass<AurParsedData, AurCompile
         return generateBytecode(expression.expression);
     }
 
+    @Override
+    public List<Byte> processVariableGetExpression(AurVariableGetExpression expression) {
+        List<Byte> result = new ArrayList<>();
+
+        emitByte(AurInstructionCode.LOAD, result);
+        emitByte((byte) stringPool.indexOf(expression.name.lexeme()), result);
+
+        return result;
+    }
+
     private byte writeConstant(AurValue constant) {
         if (constantTable.containsKey(constant)) {
             return constantTable.get(constant);
@@ -224,5 +236,27 @@ public class AurCompilePass extends AurCompilationPass<AurParsedData, AurCompile
         emitByte(AurInstructionCode.PRINT, result);
 
         return result;
+    }
+
+    @Override
+    public List<Byte> processVariableDeclaration(VariableDeclarationStatement statement) {
+
+        List<Byte> value = generateBytecode(statement.value);
+        byte index = emitString(statement.name.lexeme());
+        List<Byte> result = new ArrayList<>(value);
+        emitByte(AurInstructionCode.DEFINE, result);
+        result.add(index);
+
+
+        return result;
+    }
+
+    private byte emitString(String text) {
+        if (!stringPool.contains(text)) {
+            stringPool.add(text);
+        }
+        stringTable.put((byte) stringPool.indexOf(text), text);
+
+        return (byte) stringPool.indexOf(text);
     }
 }

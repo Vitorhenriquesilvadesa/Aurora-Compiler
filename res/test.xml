@@ -1,42 +1,14 @@
 <Program>
-  <IfStatement>
-    <Condition>
-      <Unary>
-        </Operator MINUS>
-        <Unary>
-          </Operator MARK>
-          <Unary>
-            </Operator MINUS>
-            <Unary>
-              </Operator MARK>
-              <Unary>
-                </Operator MINUS>
-                <Unary>
-                  </Operator MARK>
-                  <Unary>
-                    </Operator MINUS>
-                    <Unary>
-                      </Operator MARK>
-                      <Unary>
-                        </Operator MINUS>
-                        <Unary>
-                          </Operator MARK>
-                          <Literal>3</Literal>
-                        </Unary>
-                      </Unary>
-                    </Unary>
-                  </Unary>
-                </Unary>
-              </Unary>
-            </Unary>
-          </Unary>
-        </Unary>
-      </Unary>
-    </Condition>
-    <Then>
-      <Body>
+  <VariableDeclaration>
+    <Type>int</Type>
+    <Name>i</Name>
+    <Value>
+      <Literal>0</Literal>
+    </Value>
+  </VariableDeclaration>
 
-      </Body>
-    </Then>
-  </IfStatement>
+  <Print>
+    <Get>
+    </Print>
+
 </Program>

@@ -75,6 +75,16 @@ public class AurBytecodeEmissionPass extends AurCompilationPass<AurCompiledCode,
                 rawCode.add(byteCode);
             }
 
+            writer.writeByte(AurBinaryCodes.STRING_POOL);
+
+            for (Map.Entry<Byte, String> string : input.stringTable.entrySet()) {
+                writer.writeByte(string.getValue().length());
+
+                for (char c : string.getValue().toCharArray()) {
+                    writer.writeByte((byte) c);
+                }
+            }
+
             writer.writeByte(AurBinaryCodes.TABLE);
 
             for (Map.Entry<Byte, AurValue> entry : input.constantTable.entrySet()) {
@@ -125,7 +135,7 @@ public class AurBytecodeEmissionPass extends AurCompilationPass<AurCompiledCode,
             throw new RuntimeException(e);
         }
 
-        return new AurBytecode(filePath, rawCode, input.constantTable);
+        return new AurBytecode(filePath, rawCode, input.constantTable, input.stringTable);
     }
 
     private byte[] encrypt(String hash) throws Exception {

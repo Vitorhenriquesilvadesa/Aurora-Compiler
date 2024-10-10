@@ -180,6 +180,11 @@ public class AurInterpretPass extends AurCompilationPass<AurParsedData, AurInter
         return evaluate(expression.expression);
     }
 
+    @Override
+    public AurValue processVariableGetExpression(AurVariableGetExpression expression) {
+        return null;
+    }
+
 
     private boolean checkIntOperand(AurValue operand) {
         return operand.type == AurValueType.INT;
@@ -226,6 +231,11 @@ public class AurInterpretPass extends AurCompilationPass<AurParsedData, AurInter
         AurValue value = evaluate(statement.value);
         System.out.println(stringify(value));
 
+        return null;
+    }
+
+    @Override
+    public Void processVariableDeclaration(VariableDeclarationStatement statement) {
         return null;
     }
 

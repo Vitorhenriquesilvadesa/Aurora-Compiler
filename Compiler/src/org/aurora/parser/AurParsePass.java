@@ -50,11 +50,38 @@ public class AurParsePass extends AurCompilationPass<AurScannedData, AurParsedDa
         List<AurStatementNode> statements = new ArrayList<>();
 
         while (!isAtEnd()) {
-            AurStatementNode statementNode = statement();
+            AurStatementNode statementNode = declaration();
             statements.add(statementNode);
         }
 
         return new AurParsedData(statements);
+    }
+
+    private AurStatementNode declaration() {
+
+        if (match(IDENTIFIER)) return variableDeclaration();
+
+        return statement();
+    }
+
+    private AurStatementNode variableDeclaration() {
+        if (check(IDENTIFIER)) {
+            Token type = previous();
+            consume(IDENTIFIER, "Expect variable name after type.");
+            Token name = previous();
+            consume(EQUAL, "Expect '=' after variable name.");
+            AurExpressionNode expression = expression();
+            consume(SEMICOLON, "Expect ';' after initializer.");
+
+            return new VariableDeclarationStatement(type, name, expression);
+        }
+
+        backTrack();
+        return expressionStatement();
+    }
+
+    private void backTrack() {
+        current--;
     }
 
     private AurStatementNode statement() {
@@ -77,7 +104,7 @@ public class AurParsePass extends AurCompilationPass<AurScannedData, AurParsedDa
         List<AurStatementNode> statements = new ArrayList<>();
 
         while (!check(RIGHT_BRACE)) {
-            statements.add(statement());
+            statements.add(declaration());
         }
 
         consume(RIGHT_BRACE, "Expect '}' after body.");
@@ -197,11 +224,15 @@ public class AurParsePass extends AurCompilationPass<AurScannedData, AurParsedDa
             return new AurLiteralExpression(previous());
         }
 
+        if (match(IDENTIFIER)) {
+            return new AurVariableGetExpression(previous());
+        }
+
         if (match(LEFT_PAREN)) {
             return group();
         }
 
-        error("Invalid expression");
+        error("Invalid expression: " + peek().type());
         return null;
     }
 

@@ -1,27 +1,32 @@
 HEADER:
-    ohujakb44Q8ZBBg5OpEPXkOsGA5q9W/N5T1fiWDTucIgXE6dzpzr7XzIP4ZA8EozOv4h2MW+Tb7STNvAJm/R2VpsncfDymbuNK+BFnzuh8I=
+    pPIA3hVt8g36bdVdgJ4ZNn7ZKfgPXdxrQEijhPaqQiPEE0Qgtu0/zVK9xyHfipMv+NYSyax8ep2+BMdmSQ9kPFpsncfDymbuNK+BFnzuh8I=
 
 MAIN:
-    LOAD_CONST    (0)    ; 3
-    LOAD_CONST    (1)    ; 4
-    LESS
-    B_IF_F        (6)
-    LOAD_CONST    (2)    ; Hello
-    PRINT
-    BRANCH        (12)
-    LOAD_CONST    (3)    ; 2
-    LOAD_CONST    (3)    ; 2
-    MUL
-    PRINT
-    LOAD_CONST    (4)    ; World
-    PRINT
-    LOAD_CONST    (4)    ; World
+    LOAD_CONST    (0)    ; 2
+    DEFINE    i
+    LOAD_CONST    (0)    ; 2
+    DEFINE    j
+    LOAD          (0)    ; i
+    LOAD          (1)    ; j
+    EQUAL_EQUAL
+    B_IF_F        (8)
+    LOAD_CONST    (1)    ; 1
+    NEGATE
+    DEFINE    k
+    BRANCH        (5)
+    LOAD_CONST    (0)    ; 2
+    NEGATE
+    DEFINE    k
+    LOAD          (2)    ; k
     PRINT
     RETURN
 
+
+STRING_POOL:
+    i
+    j
+    k
+
 TABLE:
-    INT:        3
-    INT:        4
-    STRING:    "Hello"
-    INT:        2
-    STRING:    "World"
+        INT:                2
+        INT:                1

@@ -6,6 +6,7 @@ import org.aurora.parser.statement.*;
 import org.aurora.processor.AurExpressionNodeProcessor;
 import org.aurora.processor.AurStatementNodeProcessor;
 import org.aurora.scanner.AurScannedData;
+import org.aurora.scanner.TokenType;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -56,7 +57,11 @@ public class AurParsedASTPrinterInterceptor implements AurPassiveInterceptor<Aur
 
     @Override
     public String processLiteralExpression(AurLiteralExpression expression) {
-        return indent() + "<Literal>" + expression.literal.literal() + "</Literal>" + "\n";
+        if (expression.literal.type() == TokenType.IDENTIFIER) {
+            return indent() + "<Literal>" + expression.literal.lexeme() + "</Literal>" + "\n";
+        } else {
+            return indent() + "<Literal>" + expression.literal.literal() + "</Literal>" + "\n";
+        }
     }
 
     @Override
@@ -132,6 +137,18 @@ public class AurParsedASTPrinterInterceptor implements AurPassiveInterceptor<Aur
         endScope();
         sb.append(indent()).append("</Group>");
         newLine(sb);
+
+        return sb.toString();
+    }
+
+    @Override
+    public String processVariableGetExpression(AurVariableGetExpression expression) {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(indent()).append("<Get>");
+        newLine(sb);
+        beginScope();
+
 
         return sb.toString();
     }
@@ -234,6 +251,47 @@ public class AurParsedASTPrinterInterceptor implements AurPassiveInterceptor<Aur
 
     @Override
     public String processPrintStatement(PrintStatement statement) {
-        return "";
+        StringBuilder sb = new StringBuilder();
+        sb.append(indent()).append("<Print>");
+        newLine(sb);
+        beginScope();
+
+        sb.append(statement.value.acceptProcessor(this));
+        endScope();
+        sb.append(indent()).append("</Print>");
+        newLine(sb);
+
+        return sb.toString();
+    }
+
+    @Override
+    public String processVariableDeclaration(VariableDeclarationStatement statement) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(indent()).append("<VariableDeclaration>");
+        newLine(sb);
+        beginScope();
+
+        sb.append(indent()).append("<Type>");
+        sb.append(statement.type.lexeme());
+        sb.append("</Type>");
+        newLine(sb);
+        sb.append(indent()).append("<Name>");
+        sb.append(statement.name.lexeme());
+        sb.append("</Name>");
+        newLine(sb);
+        sb.append(indent()).append("<Value>");
+        beginScope();
+        newLine(sb);
+        sb.append(format(statement.value));
+        endScope();
+        sb.append(indent()).append("</Value>");
+        newLine(sb);
+
+        endScope();
+
+        sb.append(indent()).append("</VariableDeclaration>");
+        newLine(sb);
+
+        return sb.toString();
     }
 }

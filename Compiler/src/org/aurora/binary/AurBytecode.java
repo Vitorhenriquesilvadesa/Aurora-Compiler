@@ -16,9 +16,11 @@ public class AurBytecode extends AurIOComponent<AurBytecode> {
     public final byte[] code;
     public final List<Byte> rawCode;
     public final Map<Byte, AurValue> constantTable;
+    public final Map<Byte, String> stringTable;
 
-    public AurBytecode(String path, List<Byte> rawCode, Map<Byte, AurValue> constantTable) {
+    public AurBytecode(String path, List<Byte> rawCode, Map<Byte, AurValue> constantTable, Map<Byte, String> stringTable) {
         this.rawCode = rawCode;
+        this.stringTable = stringTable;
         try {
             this.code = Files.readAllBytes(Path.of(path));
             this.constantTable = constantTable;
@@ -27,15 +29,16 @@ public class AurBytecode extends AurIOComponent<AurBytecode> {
         }
     }
 
-    private AurBytecode(byte[] code, List<Byte> rawCode, Map<Byte, AurValue> constantTable) {
+    private AurBytecode(byte[] code, List<Byte> rawCode, Map<Byte, AurValue> constantTable, Map<Byte, String> stringTable) {
         this.code = code;
         this.rawCode = rawCode;
         this.constantTable = constantTable;
+        this.stringTable = stringTable;
     }
 
     @Override
     public AurBytecode clone() {
-        return new AurBytecode(this.code, this.rawCode, constantTable);
+        return new AurBytecode(this.code, rawCode, constantTable, stringTable);
     }
 
     @Override

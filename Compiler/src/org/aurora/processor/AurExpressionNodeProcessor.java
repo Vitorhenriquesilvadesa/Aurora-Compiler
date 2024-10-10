@@ -1,6 +1,7 @@
 package org.aurora.processor;
 
 import org.aurora.parser.expression.*;
+import org.aurora.parser.statement.AurVariableGetExpression;
 
 public interface AurExpressionNodeProcessor<T> {
 
@@ -13,4 +14,6 @@ public interface AurExpressionNodeProcessor<T> {
     T processLogicalExpression(AurLogicalExpression expression);
 
     T processGroupExpression(AurGroupExpression expression);
+
+    T processVariableGetExpression(AurVariableGetExpression expression);
 }

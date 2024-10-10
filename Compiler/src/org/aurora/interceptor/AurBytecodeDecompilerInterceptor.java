@@ -7,6 +7,7 @@ import org.aurora.compiler.AurInstructionCode;
 import org.aurora.type.AurValueType;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.Base64;
 
 public class AurBytecodeDecompilerInterceptor implements AurPassiveInterceptor<AurCompiledCode, AurBytecode> {
@@ -48,6 +49,10 @@ public class AurBytecodeDecompilerInterceptor implements AurPassiveInterceptor<A
                     disassembleMain(input);
                     break;
 
+                case AurBinaryCodes.STRING_POOL:
+                    disassemblePool(input);
+                    break;
+
                 case AurBinaryCodes.TABLE:
                     disassembleTable(input);
                     break;
@@ -59,13 +64,41 @@ public class AurBytecodeDecompilerInterceptor implements AurPassiveInterceptor<A
         }
     }
 
+    private void disassemblePool(AurBytecode input) {
+        writeln("STRING_POOL:");
+        advance();
+
+        beginScope();
+
+        while (peek(input) != AurBinaryCodes.TABLE) {
+            disassembleStringFromPool(input);
+        }
+
+        newline();
+    }
+
+    private void disassembleStringFromPool(AurBytecode input) {
+        byte length = peek(input);
+        advance();
+
+        byte[] bytes = new byte[length];
+
+        for (int i = 0; i < length; i++) {
+            bytes[i] = peek(input);
+            advance();
+        }
+
+        String decodedString = new String(bytes);
+        writelnIndented(decodedString);
+    }
+
     private void disassembleMain(AurBytecode input) {
         writeln("MAIN:");
         advance();
 
         beginScope();
 
-        while (peek(input) != AurBinaryCodes.TABLE) {
+        while (peek(input) != AurBinaryCodes.STRING_POOL) {
             disassembleInstruction(peek(input), input);
         }
 
@@ -194,6 +227,23 @@ public class AurBytecodeDecompilerInterceptor implements AurPassiveInterceptor<A
     private void disassembleInstruction(byte instruction, AurBytecode input) {
 
         switch (instruction) {
+            case AurInstructionCode.DEFINE:
+                writeIndented("DEFINE");
+                advance();
+                writelnIndented(input.stringTable.get(peek(input)));
+                advance();
+                break;
+
+            case AurInstructionCode.LOAD:
+                writeIndented("LOAD ");
+                writeIndented(" ");
+                advance();
+                byte index = peek(input);
+                advance();
+                writeIndented("(" + index + ")");
+                writelnIndented("; " + input.stringTable.get(index));
+                break;
+
             case AurInstructionCode.LOAD_CONST:
                 writeIndented("LOAD_CONST");
                 advance();
@@ -203,7 +253,7 @@ public class AurBytecodeDecompilerInterceptor implements AurPassiveInterceptor<A
                 break;
 
             case AurInstructionCode.RETURN:
-                writeIndented("RETURN");
+                writelnIndented("RETURN");
                 advance();
                 break;
 
