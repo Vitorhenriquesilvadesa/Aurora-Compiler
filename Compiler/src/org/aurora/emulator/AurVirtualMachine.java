@@ -85,6 +85,15 @@ public class AurVirtualMachine extends AurCompilationPass<AurBytecode, AurNullIO
                     break;
                 }
 
+                case AurInstructionCode.LOOP: {
+                    byte lowByte = readByte();
+                    byte highByte = readByte();
+
+                    short offset = (short) ((highByte << 8) | (lowByte & 0xFF));
+                    ip -= offset;
+                    break;
+                }
+
                 case AurInstructionCode.JUMP_IF_FALSE: {
                     byte lowByte = readByte();
                     byte highByte = readByte();

@@ -86,10 +86,21 @@ public class AurParsePass extends AurCompilationPass<AurScannedData, AurParsedDa
 
     private AurStatementNode statement() {
         if (match(IF)) return ifStatement();
+        if (match(WHILE)) return whileStatement();
         if (match(LEFT_BRACE)) return bodyStatement();
         if (match(PRINT)) return printStatement();
 
         return expressionStatement();
+    }
+
+    private AurStatementNode whileStatement() {
+        consume(LEFT_PAREN, "Expect '(' after 'for'.");
+        AurExpressionNode condition = expression();
+        consume(RIGHT_PAREN, "Expect ')' after condition.");
+
+        AurStatementNode body = statement();
+
+        return new AurWhileStatement(condition, body);
     }
 
     private AurStatementNode printStatement() {

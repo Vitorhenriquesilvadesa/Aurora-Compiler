@@ -18,6 +18,7 @@ public class AurCompilePass extends AurCompilationPass<AurParsedData, AurCompile
     private final List<String> stringPool = new ArrayList<>();
     private final Map<Byte, String> stringTable = new HashMap<>();
     private byte currentConstantIndex = 0;
+    private int currentScope = 0;
 
     @Override
     public Class<AurParsedData> getInputType() {
@@ -48,6 +49,10 @@ public class AurCompilePass extends AurCompilationPass<AurParsedData, AurCompile
 
     private List<Byte> generateBytecode(AurExpressionNode expression) {
         return expression.acceptProcessor(this);
+    }
+
+    private List<Byte> generateBytecode(AurStatementNode statement) {
+        return statement.acceptProcessor(this);
     }
 
     @Override
@@ -199,7 +204,10 @@ public class AurCompilePass extends AurCompilationPass<AurParsedData, AurCompile
         emitByte(AurInstructionCode.JUMP_IF_FALSE, result);
         emitByte(ifLowByte, result);
         emitByte(ifHighByte, result);
+
+        beginScope();
         result.addAll(thenBranch);
+        endScope();
 
         short elseInstructionCount = (short) (elseBranch.size());
         byte elseHighByte = (byte) (elseInstructionCount >> 8);
@@ -209,7 +217,9 @@ public class AurCompilePass extends AurCompilationPass<AurParsedData, AurCompile
         emitByte(elseLowByte, result);
         emitByte(elseHighByte, result);
 
+        beginScope();
         result.addAll(elseBranch);
+        endScope();
 
         return result;
     }
@@ -241,12 +251,42 @@ public class AurCompilePass extends AurCompilationPass<AurParsedData, AurCompile
     @Override
     public List<Byte> processVariableDeclaration(VariableDeclarationStatement statement) {
 
+        // TODO Local variables when current scope greater than zero.
+
         List<Byte> value = generateBytecode(statement.value);
         byte index = emitString(statement.name.lexeme());
         List<Byte> result = new ArrayList<>(value);
         emitByte(AurInstructionCode.DEFINE, result);
         result.add(index);
 
+
+        return result;
+    }
+
+    @Override
+    public List<Byte> processWhileStatement(AurWhileStatement statement) {
+        List<Byte> condition = generateBytecode(statement.condition);
+        List<Byte> body = generateBytecode(statement.body);
+
+        List<Byte> result = new ArrayList<>(condition);
+
+        short instructionCount = (short) (body.size() + 3);
+        byte highByte = (byte) (instructionCount >> 8);
+        byte lowByte = (byte) (instructionCount & 0xFF);
+
+        emitByte(AurInstructionCode.JUMP_IF_FALSE, result);
+        emitByte(lowByte, result);
+        emitByte(highByte, result);
+
+        result.addAll(body);
+        emitByte(AurInstructionCode.LOOP, result);
+
+        short loopSize = (short) (condition.size() + instructionCount + 3);
+        byte loopHighByte = (byte) (loopSize >> 8);
+        byte loopLowByte = (byte) (loopSize & 0xFF);
+
+        emitByte(loopLowByte, result);
+        emitByte(loopHighByte, result);
 
         return result;
     }
@@ -258,5 +298,13 @@ public class AurCompilePass extends AurCompilationPass<AurParsedData, AurCompile
         stringTable.put((byte) stringPool.indexOf(text), text);
 
         return (byte) stringPool.indexOf(text);
+    }
+
+    private void beginScope() {
+        currentScope++;
+    }
+
+    private void endScope() {
+        currentScope--;
     }
 }

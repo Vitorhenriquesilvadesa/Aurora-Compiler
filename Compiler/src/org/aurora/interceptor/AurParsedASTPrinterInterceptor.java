@@ -294,4 +294,9 @@ public class AurParsedASTPrinterInterceptor implements AurPassiveInterceptor<Aur
 
         return sb.toString();
     }
+
+    @Override
+    public String processWhileStatement(AurWhileStatement statement) {
+        return "<For>";
+    }
 }

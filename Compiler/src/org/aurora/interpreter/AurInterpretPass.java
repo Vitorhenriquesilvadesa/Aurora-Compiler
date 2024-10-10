@@ -239,6 +239,17 @@ public class AurInterpretPass extends AurCompilationPass<AurParsedData, AurInter
         return null;
     }
 
+    @Override
+    public Void processWhileStatement(AurWhileStatement statement) {
+        AurValue condition = evaluate(statement.condition);
+
+        if (((boolean) condition.value)) {
+            execute(statement.body);
+        }
+
+        return null;
+    }
+
     private String stringify(AurValue value) {
         if (value.type == AurValueType.NULL) {
             return "null";

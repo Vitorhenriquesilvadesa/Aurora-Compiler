@@ -348,6 +348,22 @@ public class AurBytecodeDecompilerInterceptor implements AurPassiveInterceptor<A
                 break;
             }
 
+            case AurInstructionCode.LOOP: {
+                writeIndented("LOOP ");
+                writeIndented(" ");
+
+                advance();
+                byte lowByte = peek(input);
+                advance();
+                byte highByte = peek(input);
+
+                short offset = (short) ((highByte << 8) | (lowByte & 0xFF));
+                advance();
+
+                writelnIndented("(" + offset + ")");
+                break;
+            }
+
             case AurInstructionCode.JUMP_IF_FALSE: {
                 writeIndented("B_IF_F");
                 writeIndented("");

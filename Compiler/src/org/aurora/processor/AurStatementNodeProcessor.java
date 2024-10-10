@@ -13,4 +13,6 @@ public interface AurStatementNodeProcessor<T> {
     T processPrintStatement(PrintStatement statement);
 
     T processVariableDeclaration(VariableDeclarationStatement statement);
+
+    T processWhileStatement(AurWhileStatement statement);
 }

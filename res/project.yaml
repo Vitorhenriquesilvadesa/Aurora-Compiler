@@ -1,0 +1,9 @@
+project:
+  - description:
+    - name: My Test Project
+    - version: 1.0.0
+    - alpha: true
+
+  - main: test.aurora
+  - script: true
+  - kernels: true

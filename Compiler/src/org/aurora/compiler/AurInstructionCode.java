@@ -28,4 +28,5 @@ public final class AurInstructionCode {
     public static final byte DEFINE = 19;
     public static final byte ASSIGN = 20;
     public static final byte LOAD = 21;
+    public static final byte LOOP = 22;
 }

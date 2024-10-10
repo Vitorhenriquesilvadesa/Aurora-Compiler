@@ -7,7 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public final class AurFile extends AurIOComponent {
+public final class AurFile extends AurIOComponent<AurFile> {
 
     private final String source;
 

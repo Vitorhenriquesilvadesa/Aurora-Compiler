@@ -64,6 +64,10 @@ public class AurBytecodePrinterInterceptor implements AurPassiveInterceptor<AurP
                         writer.println(indent() + "NEGATE");
                         break;
 
+                    case AurInstructionCode.LOOP:
+                        writer.println(indent() + "LOOP");
+                        break;
+
                     default:
                         writer.println(indent() + input.code.get(i));
                         break;

@@ -31,6 +31,8 @@ public class AurScanPass extends AurCompilationPass<AurFile, AurScannedData> {
         keywords.put("true", TRUE);
         keywords.put("false", FALSE);
         keywords.put("print", PRINT);
+        keywords.put("for", FOR);
+        keywords.put("while", WHILE);
     }
 
     @Override
