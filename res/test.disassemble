@@ -1,46 +1,34 @@
 HEADER:
-    dVjKkPYXSS7Ar8ZZOYK3uaSYh1y5zFTKvCGkao0JiZbXuSnMb8F0EAH/yuz8Shhd9pH/JNmJQhmq6pB1748ooVpsncfDymbuNK+BFnzuh8I=
+    gr3qCRqv4GfWBhOwOYf02a4M37eDdLtUcz6cMRB85jHQb5xYpNOHWhMj2qJjgh2xhrNrwpgAEyU/OeRTGIo21FpsncfDymbuNK+BFnzuh8I=
 
 MAIN:
     LOAD_CONST    (0)    ; 3
-    LOAD_CONST    (0)    ; 3
-    EQUAL_EQUAL
-    LOAD_CONST    (1)    ; 2
-    LOAD_CONST    (2)    ; 1
-    SUB
-    NOT_EQUAL
-    LOAD_CONST    (0)    ; 3
-    LOAD_CONST    (3)    ; 5
+    DEFINE    i
+    LOAD_CONST    (1)    ; 1678
+    LOAD_CONST    (2)    ; 72
+    LOAD          (0)    ; i
     MUL
-    EQUAL_EQUAL
-    LOAD_CONST    (4)    ; false
-    LOAD_CONST    (0)    ; 3
-    LOAD_CONST    (0)    ; 3
-    ADD
-    LOAD_CONST    (1)    ; 2
-    LOAD_CONST    (5)    ; 0
     SUB
-    EQUAL_EQUAL
-    OR
-    AND
-    INVERSE
+    DEFINE    j
+    LOAD          (1)    ; j
+    LOAD_CONST    (3)    ; 5
+    GREATER
     B_IF_F        (6)
-    LOAD_CONST    (6)    ; Hello World
+    LOAD          (1)    ; j
     PRINT
-    LOOP          (42)
-    LOAD_CONST    (7)    ; Bye World
+    LOOP          (14)
+    LOAD_CONST    (4)    ; Bye World
     PRINT
     RETURN
 
 
 STRING_POOL:
+    i
+    j
 
 TABLE:
         INT:                3
-        INT:                2
-        INT:                1
+        INT:                -114
+        INT:                72
         INT:                5
-        BOOL:        false
-        INT:                0
-        STRING:        "Hello World"
         STRING:        "Bye World"

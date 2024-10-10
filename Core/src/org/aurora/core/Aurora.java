@@ -7,6 +7,7 @@ import org.aurora.emulator.AurVirtualMachine;
 import org.aurora.interceptor.AurBytecodeDecompilerInterceptor;
 import org.aurora.interceptor.AurParsedASTPrinterInterceptor;
 import org.aurora.interpreter.AurInterpretPass;
+import org.aurora.optimizer.AurOptimizationPass;
 import org.aurora.parser.AurParsePass;
 import org.aurora.scanner.AurScanPass;
 import org.aurora.util.AurFile;
@@ -17,6 +18,7 @@ public class Aurora {
 
         compilationPipeline.insertStage(new AurScanPass());
         compilationPipeline.insertStage(new AurParsePass());
+        compilationPipeline.insertStage(new AurOptimizationPass());
         compilationPipeline.insertStage(new AurCompilePass());
         compilationPipeline.insertStage(new AurBytecodeEmissionPass().addInterceptor(new AurBytecodeDecompilerInterceptor()));
         compilationPipeline.insertStage(new AurVirtualMachine());
