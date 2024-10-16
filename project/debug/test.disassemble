@@ -1,0 +1,13 @@
+HEADER:
+    xcWgBP0tA4XrGxafuoqPCScD/TH9YW34Chm01PXZNa1F9k0UgIeEdEemFm2dFNYriB51IgihtPScIVKF4s3J7VpsncfDymbuNK+BFnzuh8I=
+
+MAIN:
+    LOAD_CONST    (0)    ; Hello World
+    PRINT
+    RETURN
+
+
+STRING_POOL:
+
+TABLE:
+        STRING:        "Hello World"
