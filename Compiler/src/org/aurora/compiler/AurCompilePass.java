@@ -171,6 +171,16 @@ public class AurCompilePass extends AurCompilationPass<AurParsedData, AurCompile
         return result;
     }
 
+    @Override
+    public List<Byte> processAssignmentExpression(AurAssignmentExpression expression) {
+        List<Byte> value = generateBytecode(expression.value);
+        List<Byte> result = new ArrayList<>(value);
+        emitByte(AurInstructionCode.STORE, result);
+        emitByte((byte) stringPool.indexOf(expression.name.lexeme()), result);
+
+        return result;
+    }
+
     private byte writeConstant(AurValue constant) {
         if (constantTable.containsKey(constant)) {
             return constantTable.get(constant);

@@ -7,11 +7,16 @@ import org.aurora.parser.statement.*;
 import org.aurora.pass.AurCompilationPass;
 import org.aurora.processor.AurExpressionNodeProcessor;
 import org.aurora.processor.AurStatementNodeProcessor;
+import org.aurora.scanner.Token;
 import org.aurora.type.AurValue;
 import org.aurora.type.AurValueType;
 
 public class AurInterpretPass extends AurCompilationPass<AurParsedData, AurInterpretResult> implements AurExpressionNodeProcessor<AurValue>,
         AurStatementNodeProcessor<Void> {
+
+    private AurEnvironment currentEnvironment = new AurEnvironment();
+    private AurEnvironment previousEnvironment = null;
+    private int depth = 0;
 
     @Override
     public Class<AurParsedData> getInputType() {
@@ -30,9 +35,15 @@ public class AurInterpretPass extends AurCompilationPass<AurParsedData, AurInter
 
     @Override
     protected AurInterpretResult pass(AurParsedData input) {
+        long start = System.currentTimeMillis();
+
         for (AurStatementNode statement : input.getStatements()) {
             execute(statement);
         }
+
+        long end = System.currentTimeMillis();
+        long delta = end - start;
+        System.out.println(delta / 1000f + " seconds.");
 
         return new AurInterpretResult(0);
     }
@@ -182,7 +193,18 @@ public class AurInterpretPass extends AurCompilationPass<AurParsedData, AurInter
 
     @Override
     public AurValue processVariableGetExpression(AurVariableGetExpression expression) {
-        return null;
+        return lookupVariable(expression.name);
+    }
+
+    @Override
+    public AurValue processAssignmentExpression(AurAssignmentExpression expression) {
+        AurValue value = evaluate(expression.value);
+        currentEnvironment.set(expression.name, value);
+        return value;
+    }
+
+    private AurValue lookupVariable(Token name) {
+        return currentEnvironment.get(name);
     }
 
 
@@ -220,9 +242,14 @@ public class AurInterpretPass extends AurCompilationPass<AurParsedData, AurInter
     @Override
     public Void processBodyStatement(AurBodyStatement statement) {
 
+        beginScope();
+
         for (AurStatementNode statementNode : statement.statements) {
             execute(statementNode);
         }
+
+        endScope();
+
         return null;
     }
 
@@ -236,14 +263,18 @@ public class AurInterpretPass extends AurCompilationPass<AurParsedData, AurInter
 
     @Override
     public Void processVariableDeclaration(VariableDeclarationStatement statement) {
+        AurValue value = evaluate(statement.value);
+        Token name = statement.name;
+
+        defineVariable(name, value);
+
         return null;
     }
 
     @Override
     public Void processWhileStatement(AurWhileStatement statement) {
-        AurValue condition = evaluate(statement.condition);
 
-        if (((boolean) condition.value)) {
+        while (((boolean) evaluate(statement.condition).value)) {
             execute(statement.body);
         }
 
@@ -256,5 +287,21 @@ public class AurInterpretPass extends AurCompilationPass<AurParsedData, AurInter
         } else {
             return value.toString();
         }
+    }
+
+    private void defineVariable(Token name, AurValue value) {
+        currentEnvironment.define(name, value);
+    }
+
+    private void beginScope() {
+        previousEnvironment = currentEnvironment;
+        currentEnvironment = new AurEnvironment(previousEnvironment);
+        depth++;
+    }
+
+    private void endScope() {
+        currentEnvironment = previousEnvironment;
+        previousEnvironment = currentEnvironment.enclosing;
+        depth--;
     }
 }

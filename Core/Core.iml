@@ -8,5 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Compiler" />
+    <orderEntry type="library" name="yaml.snakeyaml" level="project" />
+    <orderEntry type="library" name="io.github.classgraph" level="project" />
   </component>
 </module>

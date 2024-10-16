@@ -3,6 +3,7 @@ package org.aurora.emulator;
 import org.aurora.binary.AurBytecode;
 import org.aurora.compiler.AurInstructionCode;
 import org.aurora.component.AurNullIOComponent;
+import org.aurora.exception.AurException;
 import org.aurora.pass.AurCompilationPass;
 import org.aurora.type.AurValue;
 import org.aurora.type.AurValueType;
@@ -15,7 +16,7 @@ public class AurVirtualMachine extends AurCompilationPass<AurBytecode, AurNullIO
     private int ip;
     private List<Byte> code;
     private List<AurValue> constantTable;
-    private Map<String, AurValue> variables;
+    private Map<Byte, AurValue> variables;
     private List<String> stringPool;
 
     public AurVirtualMachine() {
@@ -23,21 +24,25 @@ public class AurVirtualMachine extends AurCompilationPass<AurBytecode, AurNullIO
     }
 
     private void execute(AurBytecode bytecode) {
-        code = bytecode.rawCode;
+        System.out.println("Execunting VM");
+        code = new ArrayList(bytecode.rawCode);
         constantTable = bytecode.constantTable.values().stream().toList();
         variables = new HashMap<>();
         stringPool = new ArrayList<>();
 
         stringPool.addAll(bytecode.stringTable.values());
 
+        long start = System.currentTimeMillis();
+
         for (ip = 0; ip < bytecode.code.length; ) {
             byte b;
 
             switch (b = readByte()) {
-                case AurInstructionCode.LOAD:
+                case AurInstructionCode.LOAD: {
                     byte index = readByte();
-                    stack.push(variables.get(stringPool.get(index)));
+                    stack.push(variables.get(index));
                     break;
+                }
 
                 case AurInstructionCode.LOAD_CONST:
                     loadConst();
@@ -110,13 +115,25 @@ public class AurVirtualMachine extends AurCompilationPass<AurBytecode, AurNullIO
                 }
 
                 case AurInstructionCode.DEFINE: {
-                    String name = stringPool.get(readByte());
-                    variables.put(name, stack.pop());
+                    variables.put(readByte(), stack.pop());
+                    break;
+                }
+
+                case AurInstructionCode.STORE: {
+                    Byte index = readByte();
+                    if (variables.containsKey(index)) {
+                        variables.put(index, stack.pop());
+                    } else {
+                        throw new AurException("Variable '" + index + "' not found");
+                    }
                     break;
                 }
 
                 case AurInstructionCode.RETURN:
                     // System.out.println("Return with code 0.");
+                    long end = System.currentTimeMillis();
+                    long delta = end - start;
+                    System.out.println(delta / 1000f + " seconds.");
                     return;
             }
         }
@@ -269,7 +286,6 @@ public class AurVirtualMachine extends AurCompilationPass<AurBytecode, AurNullIO
     @Override
     protected AurNullIOComponent pass(AurBytecode input) {
         execute(input);
-
         return new AurNullIOComponent();
     }
 }

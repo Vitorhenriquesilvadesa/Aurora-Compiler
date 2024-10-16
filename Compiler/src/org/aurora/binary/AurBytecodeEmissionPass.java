@@ -19,7 +19,7 @@ import java.util.Map;
 public class AurBytecodeEmissionPass extends AurCompilationPass<AurCompiledCode, AurBytecode> {
 
     private final DataOutputStream writer;
-    private final String filePath = "/home/vitor/IdeaProjects/Aurora/res/test.abc";
+    private final String filePath = "/home/vitor/IdeaProjects/Aurora/project/build/test.abc";
     private BytecodeHeader header;
     private static final String ALGORITHM = "AES";
     private static final String SECRET_KEY = "aurora_first_ver";

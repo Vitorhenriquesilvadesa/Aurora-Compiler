@@ -6,6 +6,7 @@ import org.aurora.interceptor.AurPassiveInterceptor;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public abstract class AurCompilationPass<I extends AurIOComponent, O extends AurIOComponent> {
 
     private final List<AurPassiveInterceptor<I, O>> interceptors = new ArrayList<>();

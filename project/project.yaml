@@ -1,0 +1,27 @@
+project:
+  description:
+    name: My Test Project
+    version: 1.0.0
+    alpha: true
+
+  main: /home/vitor/IdeaProjects/Aurora/project/src/test.aurora
+
+  script: false
+
+  kernels:
+    enabled: true
+    gpu-target: nvidia
+    memory-limits: 2GB
+
+  dependencies:
+    - name: aurora-stdlib
+      version: 2.1.0
+
+  environment:
+    debug: true
+    optimization-level: max
+
+    enable-external-interceptors: true
+
+    external-interceptors:
+      - decompiler

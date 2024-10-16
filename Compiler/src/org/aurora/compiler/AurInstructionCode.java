@@ -2,7 +2,6 @@ package org.aurora.compiler;
 
 public final class AurInstructionCode {
 
-
     private AurInstructionCode() {
     }
 
@@ -26,7 +25,7 @@ public final class AurInstructionCode {
     public static final byte JUMP = 17;
     public static final byte JUMP_IF_FALSE = 18;
     public static final byte DEFINE = 19;
-    public static final byte ASSIGN = 20;
+    public static final byte STORE = 20;
     public static final byte LOAD = 21;
     public static final byte LOOP = 22;
 }

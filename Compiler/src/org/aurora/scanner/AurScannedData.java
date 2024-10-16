@@ -2,6 +2,7 @@ package org.aurora.scanner;
 
 import org.aurora.component.AurIOComponent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AurScannedData extends AurIOComponent<AurScannedData> {
@@ -18,6 +19,12 @@ public class AurScannedData extends AurIOComponent<AurScannedData> {
 
     @Override
     public AurScannedData clone() {
-        return new AurScannedData(tokens);
+        List<Token> clonedTokens = new ArrayList<>(tokens.size());
+        for(Token token : tokens) {
+            Token clonedToken = new Token(token.type(), token.lexeme(), token.literal(), token.line());
+            clonedTokens.add(clonedToken);
+        }
+
+        return new AurScannedData(clonedTokens);
     }
 }

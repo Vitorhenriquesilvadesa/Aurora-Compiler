@@ -26,7 +26,7 @@ public class CompilationPipeline {
     public void runWithInterceptors(AurIOComponent input) {
         AurIOComponent currentInput = input;
         for (AurCompilationPass<? extends AurIOComponent, ? extends AurIOComponent> pass : passes) {
-            //System.out.println("Running " + pass.getDebugName() + " with interceptors.");
+            System.out.println("Running " + pass.getDebugName() + " with interceptors.");
             currentInput = runPassWithInterceptors(pass, currentInput);
         }
     }
@@ -45,5 +45,9 @@ public class CompilationPipeline {
             throw new IllegalArgumentException("Input type mismatch. Expected: " + pass.getInputType() + ", but got: " + input.getClass());
         }
         return pass.runWithInterceptors((I) input);
+    }
+
+    public List<AurCompilationPass<? extends AurIOComponent, ? extends AurIOComponent>> getPasses() {
+        return passes;
     }
 }

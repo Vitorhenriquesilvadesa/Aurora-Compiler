@@ -9,6 +9,7 @@ import org.aurora.scanner.Token;
 import org.aurora.scanner.TokenType;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.aurora.scanner.TokenType.*;
@@ -69,7 +70,7 @@ public class AurParsePass extends AurCompilationPass<AurScannedData, AurParsedDa
             Token type = previous();
             consume(IDENTIFIER, "Expect variable name after type.");
             Token name = previous();
-            consume(EQUAL, "Expect '=' after variable name.");
+            consume(EQUAL, "Expect '=' after variable name, but got '" + peek().lexeme() + "'.");
             AurExpressionNode expression = expression();
             consume(SEMICOLON, "Expect ';' after initializer.");
 
@@ -87,10 +88,62 @@ public class AurParsePass extends AurCompilationPass<AurScannedData, AurParsedDa
     private AurStatementNode statement() {
         if (match(IF)) return ifStatement();
         if (match(WHILE)) return whileStatement();
+        if (match(FOR)) return forStatement();
         if (match(LEFT_BRACE)) return bodyStatement();
         if (match(PRINT)) return printStatement();
 
         return expressionStatement();
+    }
+
+    private AurStatementNode forStatement() {
+        consume(LEFT_PAREN, "Expect '(' after 'for'.");
+
+        AurStatementNode initializer = null;
+
+        if (!match(SEMICOLON)) {
+            if (match(IDENTIFIER)) {
+                if (match(IDENTIFIER)) {
+                    backTrack();
+                    initializer = variableDeclaration();
+                } else {
+                    initializer = expressionStatement();
+                }
+            }
+        }
+
+        AurExpressionNode condition = null;
+
+        if (!check(SEMICOLON)) {
+            condition = expression();
+        }
+
+        consume(SEMICOLON, "Expect ')' after loop condition.");
+
+        AurExpressionNode increment = null;
+
+        if (!check(RIGHT_PAREN)) {
+            increment = expression();
+        }
+
+        consume(RIGHT_PAREN, "Expect ')' after for clauses.");
+
+        AurStatementNode body = statement();
+
+        if (increment != null) {
+            body = new AurBodyStatement(Arrays.asList(body, new AurExpressionStatement(increment)));
+        }
+
+        if (condition == null) {
+            condition = new AurLiteralExpression(new Token(TRUE, "true", null, 0));
+        }
+
+        body = new AurWhileStatement(condition, body);
+
+        if (initializer != null) {
+            body = new AurBodyStatement(Arrays.asList(initializer, body));
+        }
+
+        return body;
     }
 
     private AurStatementNode whileStatement() {
@@ -125,6 +178,7 @@ public class AurParsePass extends AurCompilationPass<AurScannedData, AurParsedDa
 
     private AurStatementNode expressionStatement() {
         AurExpressionNode expression = expression();
+        consume(SEMICOLON, "Expect ';' after expression.");
         return new AurExpressionStatement(expression);
     }
 
@@ -143,7 +197,25 @@ public class AurParsePass extends AurCompilationPass<AurScannedData, AurParsedDa
     }
 
     private AurExpressionNode expression() {
-        return or();
+        return assignment();
+    }
+
+    private AurExpressionNode assignment() {
+        AurExpressionNode expression = or();
+
+        if (match(EQUAL)) {
+            Token equals = previous();
+            AurExpressionNode value = assignment();
+
+            if (expression instanceof AurVariableGetExpression) {
+                Token name = ((AurVariableGetExpression) expression).name;
+                return new AurAssignmentExpression(name, equals, value);
+            }
+
+            error("Invalid assignment target.");
+        }
+
+        return expression;
     }
 
     private AurExpressionNode or() {
