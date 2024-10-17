@@ -4,52 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b2ecc96-c289-4e2d-ab0f-dc6a1ce5061f" name="Changes" comment="Initializing Optimization Pass.">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/io_github_classgraph.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/yaml_snakeyaml.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/interpreter/AurEnvironment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/interpreter/AurValueTypeConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/expression/AurAssignmentExpression.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/src/org/aurora/external/interceptor/AurInterceptorLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/src/org/aurora/project/AurDependencies.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/src/org/aurora/project/AurDependency.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/src/org/aurora/project/AurEnvironmentDescriptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/src/org/aurora/project/AurExternalInterceptorConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/src/org/aurora/project/AurGPUTarget.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/src/org/aurora/project/AurInterceptorConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/src/org/aurora/project/AurInterceptorDescriptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/src/org/aurora/project/AurKernelConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/src/org/aurora/project/AurOptimizationLevel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/src/org/aurora/project/AurProject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/src/org/aurora/project/AurProjectDescriptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/src/org/aurora/project/AurProjectFileReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/project.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/src/test.aurora" afterDir="false" />
+    <list default="true" id="7b2ecc96-c289-4e2d-ab0f-dc6a1ce5061f" name="Changes" comment="Initializing external interceptor system.">
+      <change afterPath="$PROJECT_DIR$/Core/src/org/aurora/external/interceptor/AurInterceptorResolver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/src/org/aurora/runtime/AurExecutionEnvironment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/src/org/aurora/runtime/CompilationPipelineBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/binary/AurBytecodeEmissionPass.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/binary/AurBytecodeEmissionPass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/compiler/AurCompilePass.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/compiler/AurCompilePass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/compiler/AurInstructionCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/compiler/AurInstructionCode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/compiler/CompilationPipeline.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/compiler/CompilationPipeline.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/emulator/AurVirtualMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/emulator/AurVirtualMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/interceptor/AurBytecodeDecompilerInterceptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/interceptor/AurBytecodePrinterInterceptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/interceptor/AurParsedASTPrinterInterceptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/interceptor/AurPassiveInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/interceptor/AurPassiveInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/interceptor/AurScanTokenPrinterInterceptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/interpreter/AurInterpretPass.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/interpreter/AurInterpretPass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/AurParsePass.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/AurParsePass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/statement/AurVariableGetExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/parser/expression/AurVariableGetExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/pass/AurCompilationPass.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/pass/AurCompilationPass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/processor/AurExpressionNodeProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/processor/AurExpressionNodeProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/AurScannedData.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/src/org/aurora/scanner/AurScannedData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Core.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Core.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/src/org/aurora/core/Aurora.java" beforeDir="false" afterPath="$PROJECT_DIR$/Core/src/org/aurora/core/Aurora.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/project.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/test.abc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/test.aurora" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/test.disassemble" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/src/org/aurora/external/interceptor/AurInterceptorLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Core/src/org/aurora/external/interceptor/AurInterceptorLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/project/project.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +144,7 @@
       <workItem from="1728661829556" duration="2823000" />
       <workItem from="1729103222051" duration="2926000" />
       <workItem from="1729109017015" duration="7447000" />
-      <workItem from="1729117775225" duration="1978000" />
+      <workItem from="1729117775225" duration="5461000" />
     </task>
     <task id="LOCAL-00001" summary="First commi.">
       <option name="closed" value="true" />
@@ -310,7 +274,23 @@
       <option name="project" value="LOCAL" />
       <updated>1728581276179</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Initializing external interceptor system.">
+      <option name="closed" value="true" />
+      <created>1729121375911</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1729121375911</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Initializing external interceptor system.">
+      <option name="closed" value="true" />
+      <created>1729121450154</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1729121450154</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,18 +317,8 @@
     <MESSAGE value="Initializing runtime variable system." />
     <MESSAGE value="Adding while statement to virtual machine." />
     <MESSAGE value="Initializing Optimization Pass." />
-    <option name="LAST_COMMIT_MESSAGE" value="Initializing Optimization Pass." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Compiler/src/org/aurora/emulator/AurVirtualMachine.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Initializing external interceptor system." />
+    <option name="LAST_COMMIT_MESSAGE" value="Initializing external interceptor system." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

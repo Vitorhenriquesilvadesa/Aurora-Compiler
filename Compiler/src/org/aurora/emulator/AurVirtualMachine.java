@@ -24,8 +24,7 @@ public class AurVirtualMachine extends AurCompilationPass<AurBytecode, AurNullIO
     }
 
     private void execute(AurBytecode bytecode) {
-        System.out.println("Execunting VM");
-        code = new ArrayList(bytecode.rawCode);
+        code = new ArrayList<>(bytecode.rawCode);
         constantTable = bytecode.constantTable.values().stream().toList();
         variables = new HashMap<>();
         stringPool = new ArrayList<>();
@@ -130,10 +129,6 @@ public class AurVirtualMachine extends AurCompilationPass<AurBytecode, AurNullIO
                 }
 
                 case AurInstructionCode.RETURN:
-                    // System.out.println("Return with code 0.");
-                    long end = System.currentTimeMillis();
-                    long delta = end - start;
-                    System.out.println(delta / 1000f + " seconds.");
                     return;
             }
         }

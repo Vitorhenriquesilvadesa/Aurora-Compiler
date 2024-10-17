@@ -17,7 +17,7 @@ import java.util.Set;
 @SuppressWarnings("rawtypes")
 public class AurInterceptorLoader {
 
-    public static List<AurPassiveInterceptor> loadExternalInterceptors() {
+    public List<AurPassiveInterceptor> loadExternalInterceptors() {
         String externalInterceptorsPath = "/home/vitor/IdeaProjects/Aurora/project/external/interceptors";
         Set<AurPassiveInterceptor> interceptors = new HashSet<>();
 
