@@ -1,0 +1,76 @@
+# Project configuration file for the Aurora Virtual Machine.
+# This file defines key aspects of the project such as its name, version, main entry point,
+# settings for GPU kernels, dependencies, and the runtime environment.
+
+project:
+  # Description block provides metadata about the project such as its name and version.
+  description:
+    # The display name of the project.
+    # This is a human-readable name to identify the project and will appear in IDEs or when the project is listed.
+    name: My Test Project
+
+    # Version of the project using semantic versioning (SemVer).
+    # Major (1): Increments for breaking changes or overhauls.
+    # Minor (0): Increments for new, backward-compatible features.
+    # Patch (0): Increments for backward-compatible bug fixes.
+    version: 1.0.0
+
+    # Defines whether this version of the project is in the alpha stage.
+    # Alpha versions indicate early development stages and may contain experimental features.
+    alpha: true
+
+  # The main entry point for the Aurora project.
+  # This should be the file that contains the starting point of your program.
+  main: project/src/test.aurora
+
+  # Indicates whether the project is configured to run as a script or not.
+  # Set to true if this is a simple script, otherwise false for more complex projects.
+  script: false
+
+  # Configuration block for GPU-based kernels.
+  kernels:
+    # Enables or disables the execution of GPU kernels in the project.
+    # GPU kernels allow the program to offload parallelizable tasks to the GPU for improved performance.
+    enabled: true
+
+    # The target GPU architecture that the kernels are optimized for.
+    # This should correspond to the GPU available on the machine where the code is executed.
+    # Common targets include 'nvidia' for NVIDIA GPUs, 'amd' for AMD GPUs, etc.
+    gpu-target: nvidia
+
+    # Defines the maximum amount of memory allocated to the GPU kernels.
+    # This value should be set based on the GPU memory capacity and the requirements of the task.
+    # Example format: "2GB", "512MB"
+    memory-limits: 2GB
+
+  # Dependencies block lists external libraries or packages that the project depends on.
+  dependencies:
+    # Dependency on the Aurora standard library (aurora-stdlib).
+    # Specifies the package name and the version required for the project.
+    # You can add more dependencies as needed for your project.
+    - name: aurora-stdlib
+      version: 2.1.0
+
+  # Environment configuration for the project execution.
+  environment:
+    # Toggles debug mode for the project.
+    # When set to true, the project will output additional logs and information for debugging purposes.
+    # Set to false for production builds to avoid excessive logging.
+    debug: true
+
+    # Optimization level for the runtime environment.
+    # Determines the level of optimization applied during compilation/execution.
+    # Options can be 'none', 'low', 'default', 'max', depending on how aggressively the system should optimize.
+    optimization-level: max
+
+    # Enables or disables the use of external interceptors.
+    # External interceptors are user-provided hooks or extensions that can interact with or modify the virtual machine's behavior.
+    enable-external-interceptors: true
+
+    # List of external interceptors to load during runtime.
+    # External interceptors can be used to perform tasks such as decompilation, profiling, or debugging.
+    # Each entry in this list should point to a valid interceptor.
+    external-interceptors:
+      # Example interceptor for decompiling bytecode during execution.
+      # This interceptor analyzes the raw bytecode and provides higher-level insights.
+      - decompiler
