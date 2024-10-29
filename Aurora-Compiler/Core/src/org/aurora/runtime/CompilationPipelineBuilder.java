@@ -1,7 +1,9 @@
 package org.aurora.runtime;
 
 import org.aurora.binary.AurBytecodeEmissionPass;
+import org.aurora.compiler.AurCSharpCompilerPass;
 import org.aurora.compiler.AurCompilePass;
+import org.aurora.compiler.AurPythonCompilerPass;
 import org.aurora.compiler.CompilationPipeline;
 import org.aurora.emulator.AurVirtualMachine;
 import org.aurora.external.interceptor.AurInterceptorLoader;
@@ -27,9 +29,11 @@ public class CompilationPipelineBuilder {
         AurScanPass scanPass = new AurScanPass();
         AurParsePass parsePass = new AurParsePass();
         AurOptimizationPass optimizationPass = new AurOptimizationPass();
-        AurCompilePass compilePass = new AurCompilePass();
-        AurBytecodeEmissionPass emissionPass = new AurBytecodeEmissionPass();
-        AurVirtualMachine virtualMachine = new AurVirtualMachine();
+        //AurCompilePass compilePass = new AurCompilePass();
+        //AurPythonCompilerPass compilePass = new AurPythonCompilerPass();
+        AurCSharpCompilerPass compilePass = new AurCSharpCompilerPass();
+        //AurBytecodeEmissionPass emissionPass = new AurBytecodeEmissionPass();
+        //AurVirtualMachine virtualMachine = new AurVirtualMachine();
         AurInterpretPass interpretPass = new AurInterpretPass();
 
         compilationPipeline.insertStage(scanPass);
@@ -41,8 +45,8 @@ public class CompilationPipelineBuilder {
 
         if (!project.isScript()) {
             compilationPipeline.insertStage(compilePass);
-            compilationPipeline.insertStage(emissionPass);
-            compilationPipeline.insertStage(virtualMachine);
+            //compilationPipeline.insertStage(emissionPass);
+            //compilationPipeline.insertStage(virtualMachine);
         }
 
         if (project.isScript()) {

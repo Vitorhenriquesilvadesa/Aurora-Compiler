@@ -154,7 +154,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "/home/vitor/IdeaProjects/Aurora/Compiler/src/org/aurora",
     "last_opened_file_path": "C:/Github/Java/Aurora-Compiler",
@@ -231,7 +231,10 @@
       <workItem from="1729109017015" duration="7447000" />
       <workItem from="1729117775225" duration="5461000" />
       <workItem from="1729802044611" duration="752000" />
-      <workItem from="1729803265030" duration="369000" />
+      <workItem from="1729803265030" duration="2049000" />
+      <workItem from="1730061305524" duration="67000" />
+      <workItem from="1730163218381" duration="3480000" />
+      <workItem from="1730167025256" duration="3557000" />
     </task>
     <task id="LOCAL-00001" summary="First commi.">
       <option name="closed" value="true" />
