@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Aurora.iml" filepath="$PROJECT_DIR$/Aurora.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Compiler/Compiler.iml" filepath="$PROJECT_DIR$/Compiler/Compiler.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Core/Core.iml" filepath="$PROJECT_DIR$/Core/Core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Aurora-Compiler/Compiler/Compiler.iml" filepath="$PROJECT_DIR$/Aurora-Compiler/Compiler/Compiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Aurora-Compiler/Core/Core.iml" filepath="$PROJECT_DIR$/Aurora-Compiler/Core/Core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Java.iml" filepath="$PROJECT_DIR$/.idea/Java.iml" />
     </modules>
   </component>
 </project>
