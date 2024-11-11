@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Aurora-Compiler/lib/snakeyaml-2.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Aurora-Compiler/lib/snakeyaml-2.3-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Aurora-Compiler/lib/classgraph-4.8.176-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Aurora-Compiler/lib/classgraph-4.8.176.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

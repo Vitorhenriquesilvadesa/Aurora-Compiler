@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="AuroraDebugInterceptorsToolkit">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Aurora-Compiler/project/external/interceptors/AuroraDebugInterceptorsToolkit.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
