@@ -228,7 +228,7 @@ public class AurPythonCompilerPass extends AurCompilationPass<AurParsedData, Aur
         String variableName = statement.name.lexeme();
         String value = evaluate(statement.value);
 
-        sb.append(variableName).append(" = ").append(value);
+        sb.append(variableName).append(" = ").append(value).append("\n");
 
         return sb.toString();
     }

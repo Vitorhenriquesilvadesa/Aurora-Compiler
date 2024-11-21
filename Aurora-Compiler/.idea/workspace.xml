@@ -4,102 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b2ecc96-c289-4e2d-ab0f-dc6a1ce5061f" name="Changes" comment="Initializing external interceptor system.">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/io_github_classgraph.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/yaml_snakeyaml.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/material_theme_project_new.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/shelf/Uncommitted_changes_before_Update_at_09_10_2024_21_03_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/shelf/Uncommitted_changes_before_Update_at_09_10_2024_21_03__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Aurora.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/Compiler.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/binary/AurBinaryCodes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/binary/AurBytecode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/binary/AurBytecodeEmissionPass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/binary/BytecodeHeader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/compiler/AurCompilePass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/compiler/AurCompiledCode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/compiler/AurInstruction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/compiler/AurInstructionCode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/compiler/CompilationPipeline.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/component/AurIOComponent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/component/AurNullIOComponent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/component/AurValidationComponent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/emulator/AurVirtualMachine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/exception/AurException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/exception/AurParseException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/interceptor/AurPassiveInterceptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/interpreter/AurEnvironment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/interpreter/AurInterpretPass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/interpreter/AurInterpretResult.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/interpreter/AurValueTypeConverter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/optimizer/AurOptimizationPass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/parser/AurParsePass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/parser/AurParsedData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/parser/expression/AurAssignmentExpression.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/parser/expression/AurBinaryExpression.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/parser/expression/AurExpressionNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/parser/expression/AurGroupExpression.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/parser/expression/AurLiteralExpression.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/parser/expression/AurLogicalExpression.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/parser/expression/AurUnaryExpression.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/parser/expression/AurVariableGetExpression.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/parser/statement/AurBodyStatement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/parser/statement/AurExpressionStatement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/parser/statement/AurIfStatement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/parser/statement/AurStatementNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/parser/statement/AurWhileStatement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/parser/statement/PrintStatement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/parser/statement/VariableDeclarationStatement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/pass/AurCompilationPass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/processor/AurExpressionNodeProcessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/processor/AurStatementNodeProcessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/scanner/AurScanPass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/scanner/AurScannedData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/scanner/Token.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/scanner/TokenType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/semantics/AurSemanticAnalyzerPass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/type/AurValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/type/AurValueType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/util/AurFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/util/FileExtensionValidator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compiler/src/org/aurora/util/HashUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/Core.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/src/org/aurora/core/Aurora.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/src/org/aurora/external/interceptor/AurInterceptorLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/src/org/aurora/external/interceptor/AurInterceptorResolver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/src/org/aurora/project/AurDependencies.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/src/org/aurora/project/AurDependency.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/src/org/aurora/project/AurEnvironmentDescriptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/src/org/aurora/project/AurExternalInterceptorConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/src/org/aurora/project/AurGPUTarget.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/src/org/aurora/project/AurInterceptorConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/src/org/aurora/project/AurInterceptorDescriptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/src/org/aurora/project/AurKernelConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/src/org/aurora/project/AurOptimizationLevel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/src/org/aurora/project/AurProject.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/src/org/aurora/project/AurProjectDescriptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/src/org/aurora/project/AurProjectFileReader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/src/org/aurora/runtime/AurExecutionEnvironment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/src/org/aurora/runtime/CompilationPipelineBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/classgraph-4.8.176-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/classgraph-4.8.176.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/snakeyaml-2.3-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/snakeyaml-2.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/build/test.abc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/debug/test.disassemble" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/debug/test.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/external/interceptors/AuroraDebugInterceptorsToolkit.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/project.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/src/test.aurora" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/test.xml" beforeDir="false" />
-    </list>
+    <list default="true" id="7b2ecc96-c289-4e2d-ab0f-dc6a1ce5061f" name="Changes" comment="Adding more operations to optimization pass." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,8 +30,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Vitorhenriquesilvadesa/Aurora-Compiler&quot;,
-    &quot;accountId&quot;: &quot;1c473d75-37dd-4c79-83d8-7ca521848027&quot;
+    &quot;url&quot;: &quot;https://github.com/Vitorhenriquesilvadesa/Aurora-Compiler.git&quot;,
+    &quot;accountId&quot;: &quot;7cb8aab9-9781-4581-b899-459abd028282&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -164,10 +69,10 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "/home/vitor/IdeaProjects/Aurora/Core/src/Main.java",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -234,7 +139,13 @@
       <workItem from="1729803265030" duration="2049000" />
       <workItem from="1730061305524" duration="67000" />
       <workItem from="1730163218381" duration="3480000" />
-      <workItem from="1730167025256" duration="3557000" />
+      <workItem from="1730167025256" duration="4211000" />
+      <workItem from="1730198841913" duration="823000" />
+      <workItem from="1730218603506" duration="228000" />
+      <workItem from="1730584793562" duration="966000" />
+      <workItem from="1730647196298" duration="57000" />
+      <workItem from="1731333855807" duration="760000" />
+      <workItem from="1732218865116" duration="264000" />
     </task>
     <task id="LOCAL-00001" summary="First commi.">
       <option name="closed" value="true" />
@@ -380,7 +291,23 @@
       <option name="project" value="LOCAL" />
       <updated>1729121450154</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Adding more operations to optimization pass.">
+      <option name="closed" value="true" />
+      <created>1730170997945</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1730170997945</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Adding more operations to optimization pass.">
+      <option name="closed" value="true" />
+      <created>1731334960676</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1731334960676</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -408,7 +335,8 @@
     <MESSAGE value="Adding while statement to virtual machine." />
     <MESSAGE value="Initializing Optimization Pass." />
     <MESSAGE value="Initializing external interceptor system." />
-    <option name="LAST_COMMIT_MESSAGE" value="Initializing external interceptor system." />
+    <MESSAGE value="Adding more operations to optimization pass." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding more operations to optimization pass." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

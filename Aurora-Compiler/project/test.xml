@@ -1,14 +1,14 @@
 <Program>
-  <VariableDeclaration>
-    <Type>int</Type>
-    <Name>i</Name>
-    <Value>
-      <Literal>0</Literal>
-    </Value>
-  </VariableDeclaration>
+    <VariableDeclaration>
+        <Type>int</Type>
+        <Name>i</Name>
+        <Value>
+            <Literal>0</Literal>
+        </Value>
+    </VariableDeclaration>
 
-  <Print>
-    <Get>
+    <Print>
+        <Get>
     </Print>
 
 </Program>

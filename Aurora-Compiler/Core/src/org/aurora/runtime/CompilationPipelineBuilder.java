@@ -29,11 +29,11 @@ public class CompilationPipelineBuilder {
         AurScanPass scanPass = new AurScanPass();
         AurParsePass parsePass = new AurParsePass();
         AurOptimizationPass optimizationPass = new AurOptimizationPass();
-        //AurCompilePass compilePass = new AurCompilePass();
+        AurCompilePass compilePass = new AurCompilePass();
         //AurPythonCompilerPass compilePass = new AurPythonCompilerPass();
-        AurCSharpCompilerPass compilePass = new AurCSharpCompilerPass();
-        //AurBytecodeEmissionPass emissionPass = new AurBytecodeEmissionPass();
-        //AurVirtualMachine virtualMachine = new AurVirtualMachine();
+        //AurCSharpCompilerPass compilePass = new AurCSharpCompilerPass();
+        AurBytecodeEmissionPass emissionPass = new AurBytecodeEmissionPass();
+        AurVirtualMachine virtualMachine = new AurVirtualMachine();
         AurInterpretPass interpretPass = new AurInterpretPass();
 
         compilationPipeline.insertStage(scanPass);
@@ -45,8 +45,8 @@ public class CompilationPipelineBuilder {
 
         if (!project.isScript()) {
             compilationPipeline.insertStage(compilePass);
-            //compilationPipeline.insertStage(emissionPass);
-            //compilationPipeline.insertStage(virtualMachine);
+            compilationPipeline.insertStage(emissionPass);
+            compilationPipeline.insertStage(virtualMachine);
         }
 
         if (project.isScript()) {

@@ -239,7 +239,7 @@ public class AurCSharpCompilerPass extends AurCompilationPass<AurParsedData, Aur
         String value = evaluate(statement.value);
 
         sb.append(statement.type.lexeme()).append(" ").append(variableName).append(" = ")
-                .append(value).append(";");
+                .append(value).append(";\n");
 
         return sb.toString();
     }
